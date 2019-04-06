@@ -29,11 +29,17 @@ export class AuthenticationService {
   }
 
   public getCurrentLoggedUser(): User {
-    return this.currentLoggedUser;
+    if (localStorage.getItem('currentUser') != null) {
+      return JSON.parse(localStorage.getItem('currentUser'));
+    }
+    return null;
   }
 
   public getLoggedUserToken(): Token {
-    return this.token;
+    if (localStorage.getItem('token') != null) {
+      return JSON.parse(localStorage.getItem('token'));
+    }
+    return null;
   }
 
   login(user: User) {
@@ -60,9 +66,11 @@ export class AuthenticationService {
 
   logout() {
     // remove user from local storage to log user out
-    if (localStorage.getItem('token') != null && localStorage.getItem('currentUser') != null) {
-      localStorage.removeItem('currentUser');
+    if (localStorage.getItem('token') != null) {
       localStorage.removeItem('token');
+    }
+    if (localStorage.getItem('currentUser') != null) {
+      localStorage.removeItem('currentUser');
     }
     // this.currentUserSubject.next(null);
   }
