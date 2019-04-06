@@ -1,0 +1,77 @@
+@import "~src/assets/styles/variables.scss";
+
+.form-area {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.form-area {
+  margin-left: 50px;
+  margin-right: 50px;
+  .form-group {
+    margin-top: 20px;
+    mat-form-field {
+      width: 100%;
+    }
+    button {
+      margin-top: 10px;
+      width: 100%;
+      margin-bottom: 25px;
+    }
+  }
+}
+
+.login-background {
+  position: relative;
+  background: url('~src/assets/images/osiedle.jpg') no-repeat center center fixed;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 450px;
+
+  .w-33 {
+    position: absolute;
+    top: 270px;
+    left: 34%;
+    .login-area {
+      min-height: 300px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      //margin-left: 90px;
+      //margin-right: 90px;
+      .title {
+        text-align: center;
+        margin-top: 30px;
+      }
+      mat-card-content {
+        margin-bottom: 35px;
+      }
+    }
+  }
+
+}
+
+.housingEstate-area-info {
+  position: relative;
+  .w-33 {
+    position: absolute;
+    left: 34%;
+    top: 230px;
+    .info {
+      color: $infoTheme;
+      text-align: center;
+      h3 {
+        margin-top: 5px;
+        font-weight: 200;
+        margin-bottom: 10px;
+      }
+      .address {
+        span {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
