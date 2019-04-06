@@ -1,13 +1,8 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
+
+<app-login></app-login>
+<div class="page-content" *ngIf="canActivate()">
+  <h1 *ngIf="canActivate()">
     Welcome to <span class="test">{{ title }}</span>
   </h1>
-    <mat-form-field class="test">
-      <input matInput placeholder="Favorite food" value="Sushi">
-    </mat-form-field>
-  <app-login></app-login>
-  <div class="page-content">
-    <router-outlet></router-outlet>
-  </div>
+  <router-outlet></router-outlet>
 </div>

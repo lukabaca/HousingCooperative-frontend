@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
 
   test() {
     const test = this.authenticationService.getUsers().subscribe((users: User[]) => {
-      console.log(users);
     });
   }
 

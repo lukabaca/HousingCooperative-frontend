@@ -28,6 +28,10 @@ export class AuthenticationService {
     return this.http.get<User>(endpoint);
   }
 
+  public isUserLoggedIn(): boolean {
+    return !!(localStorage.getItem('currentUser') != null && localStorage.getItem('token'));
+  }
+
   public getCurrentLoggedUser(): User {
     if (localStorage.getItem('currentUser') != null) {
       return JSON.parse(localStorage.getItem('currentUser'));
