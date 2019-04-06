@@ -3,13 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import {BehaviorSubject, config, Observable} from 'rxjs';
 import {User} from '../_models/user';
 import {environment} from '../../environments/environment';
+import {map} from 'rxjs/operators';
+import {Token} from '../_models/token';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private apiUrl = environment.apiUrl + 'auth';
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  private currentLoggedUser: User;
+  private token: Token;
 
   constructor(private http: HttpClient) {
     // this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -20,27 +22,48 @@ export class AuthenticationService {
     const endpoint = this.apiUrl + '/users';
     return this.http.get<User[]>(endpoint);
   }
-  // public get currentUserValue(): User {
-  //   return this.currentUserSubject.value;
-  // }
-  //
-  // login(username: string, password: string) {
-  //   return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
-  //     .pipe(map(user => {
-  //       // login successful if there's a jwt token in the response
-  //       if (user && user.token) {
-  //         // store user details and jwt token in local storage to keep user logged in between page refreshes
-  //         localStorage.setItem('currentUser', JSON.stringify(user));
-  //         this.currentUserSubject.next(user);
-  //       }
-  //
-  //       return user;
-  //     }));
-  // }
-  //
-  // logout() {
-  //   // remove user from local storage to log user out
-  //   localStorage.removeItem('currentUser');
-  //   this.currentUserSubject.next(null);
-  // }
+
+  getUserData(): Observable<User> {
+    const endpoint = this.apiUrl + '/userData';
+    return this.http.get<User>(endpoint);
+  }
+
+  public getCurrentLoggedUser(): User {
+    return this.currentLoggedUser;
+  }
+
+  public getLoggedUserToken(): Token {
+    return this.token;
+  }
+
+  login(user: User) {
+    const endpoint = this.apiUrl + '/login';
+    const password = user.password;
+    const email = user.email;
+    return this.http.post<any>(endpoint, { email, password })
+      .pipe(map(token => {
+        // login successful if there's a jwt token in the response
+        if (token && token.token) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('token', JSON.stringify(token));
+          this.token = token;
+          this.getUserData().subscribe((loggedUser: User) => {
+            if (loggedUser) {
+              localStorage.setItem('currentUser', JSON.stringify(loggedUser));
+            }
+            // return loggedUser;
+          });
+          // this.currentUserSubject.next(user);
+        }
+      }));
+  }
+
+  logout() {
+    // remove user from local storage to log user out
+    if (localStorage.getItem('token') != null && localStorage.getItem('currentUser') != null) {
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('token');
+    }
+    // this.currentUserSubject.next(null);
+  }
 }

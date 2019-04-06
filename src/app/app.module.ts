@@ -5,11 +5,15 @@ import { AppComponent } from './app.component';
 import {MaterialModule} from './_modules/material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthenticationService} from './_services/authentication.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './_components/login/login.component';
+import {JwtInterceptor} from './_interceptors/jwt.interceptor';
+import {AuthErrorInterceptor} from './_interceptors/authError.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +23,9 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

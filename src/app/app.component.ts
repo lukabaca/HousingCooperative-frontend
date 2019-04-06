@@ -15,9 +15,6 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    const test = this.authenticationService.getUsers().subscribe((users: User[]) => {
-        console.log(users);
-    });
   }
 
 }
