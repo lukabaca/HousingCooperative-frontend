@@ -1,26 +1,28 @@
 
-<div class="w-100">
+<div class="w-100 login-background">
   <div class="w-33">
   <div class="login-area">
     <mat-card class="form-card">
       <mat-card-title class="title">Logowanie</mat-card-title>
       <mat-card-content>
         <div class="form-area">
-          <form>
+          <form #loginFrom="ngForm">
             <div class="form-group">
               <mat-form-field>
                 <mat-label>Login</mat-label>
-                <input matInput placeholder="login">
+                <input type="text"
+                  matInput placeholder="login" required [(ngModel)]="user.email" name="email">
               </mat-form-field>
             </div>
             <div class="form-group">
               <mat-form-field>
                 <mat-label>Hasło</mat-label>
-                <input matInput placeholder="hasło">
+                <input type="password"
+                  matInput placeholder="hasło" required [(ngModel)]="user.password" name="password">
               </mat-form-field>
             </div>
             <div class="form-group">
-              <button mat-raised-button class="primary">Zaloguj się</button>
+              <button mat-raised-button class="primary" (click)="login()">Zaloguj się</button>
             </div>
           </form>
         </div>
@@ -29,6 +31,13 @@
   </div>
   </div>
 </div>
-<!--<div class="test">-->
-
-<!--</div>-->
+<div class="w-100 housingEstate-area-info">
+  <div class="w-33">
+      <div class="info">
+        <h3>Spółdzielnia mieszkaniowa osiedla Teofilów</h3>
+        <div class="address">
+          <span>Kontakt: 666-999-888, email: teo@gmail.com</span>
+        </div>
+      </div>
+  </div>
+</div>

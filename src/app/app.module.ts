@@ -9,6 +9,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './_components/login/login.component';
 import {JwtInterceptor} from './_interceptors/jwt.interceptor';
 import {AuthErrorInterceptor} from './_interceptors/authError.interceptor';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {AuthErrorInterceptor} from './_interceptors/authError.interceptor';
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     AuthenticationService,
