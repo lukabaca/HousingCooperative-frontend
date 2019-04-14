@@ -21,6 +21,9 @@
                   matInput placeholder="hasło" required [(ngModel)]="user.password" name="password">
               </mat-form-field>
             </div>
+            <div class="error-area" *ngIf="wrongCredentials">
+              <span class="error-message">{{ wrongCredentials }}</span>
+            </div>
             <div class="form-group">
               <button mat-raised-button class="primary" (click)="login()">Zaloguj się</button>
             </div>

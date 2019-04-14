@@ -13,6 +13,8 @@ import {FormsModule} from '@angular/forms';
 import { HomeComponent } from './_components/home/home.component';
 import { SideNavComponent } from './_components/common/side-nav/side-nav.component';
 import { TopNavComponent } from './_components/common/top-nav/top-nav.component';
+import { BuildingsComponent } from './_components/_building/buildings/buildings.component';
+import {HousingCooperativeService} from './_services/housingCooperative.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { TopNavComponent } from './_components/common/top-nav/top-nav.component'
     LoginComponent,
     HomeComponent,
     SideNavComponent,
-    TopNavComponent
+    TopNavComponent,
+    BuildingsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { TopNavComponent } from './_components/common/top-nav/top-nav.component'
   ],
   providers: [
     AuthenticationService,
+    HousingCooperativeService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true},
   ],

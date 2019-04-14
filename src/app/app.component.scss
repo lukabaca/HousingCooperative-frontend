@@ -19,7 +19,8 @@
   position: fixed;
   left: $sideNavWidth;
   top: $sideNavTop;
-  padding: 15px;
+  padding: 30px;
   height: calc(100% - #{$sideNavTop});
+  width: calc(100% - #{$sideNavWidth} - 60px);
   border-radius: 15px;
 }
