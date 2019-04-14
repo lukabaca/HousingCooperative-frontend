@@ -7,14 +7,24 @@ import {Building} from '../../../_models/building';
   templateUrl: './add-building-dialog.component.html',
   styleUrls: ['./add-building-dialog.component.scss']
 })
+
 export class AddBuildingDialogComponent implements OnInit {
 
-  title = 'Dodaj budynek';
+  title: string;
+  buttonConfirmText: string;
   building: Building;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<AddBuildingDialogComponent>) {
-    this.building = new Building();
+    if (data && data.building) {
+      this.title = 'Edytuj budynek';
+      this.buttonConfirmText = 'Zapisz';
+      this.building = Object.assign({}, data.building);
+    } else {
+      this.title = 'Dodaj budynek';
+      this.buttonConfirmText = 'Dodaj';
+      this.building = new Building();
+    }
   }
 
   ngOnInit() {

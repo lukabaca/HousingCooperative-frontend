@@ -14,8 +14,8 @@ export class BuildingsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: any;
   buildings: Building[];
-  displayedColumns: string[] = ['id', 'number', 'address', 'city'];
-  displayedColumns2 = [
+  columnKeys: string[] = ['id', 'number', 'address', 'city'];
+  displayedColumns = [
     {
       "key": "id",
       "name": "id"
@@ -47,9 +47,32 @@ export class BuildingsComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
   }
+  editBuilding(editBuilding) {
+   if (!editBuilding) {
+     return;
+   }
+   const dialogRef = this.dialog.open(AddBuildingDialogComponent, {
+     height: '400px',
+     width: '300px',
+     data: {
+       building: editBuilding,
+     }
+   });
 
+   dialogRef.afterClosed().subscribe((building: Building) => {
+     console.log(building);
+     if (building) {
+       console.log(building);
+       this.housingCooperativeService.editBuilding(building).subscribe(res => {
+         if (res) {
+           this.getBuildings();
+         }
+       });
+     }
+   });
+  }
   addBuilding() {
-    let dialogRef = this.dialog.open(AddBuildingDialogComponent, {
+    const dialogRef = this.dialog.open(AddBuildingDialogComponent, {
       height: '400px',
       width: '300px',
     });

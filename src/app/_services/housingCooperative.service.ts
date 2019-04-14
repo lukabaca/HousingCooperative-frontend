@@ -26,4 +26,9 @@ export class HousingCooperativeService {
     return this.http.post<Response>(endpoint, building);
   }
 
+  public editBuilding(building: Building): Observable<Response> {
+    const endpoint = this.apiUrl + "building/{id}?id=" + building.id;
+    return this.http.put<Response>(endpoint, building);
+  }
+
 }
