@@ -1,0 +1,28 @@
+@import "~src/assets/styles/variables.scss";
+
+.side-nav-area {
+  width: $sideNavWidth;
+  background-color: $mainTheme;
+  color: $navTextColor;
+}
+
+.top-nav-area {
+  position: absolute;
+  width: 100%;
+  height: $sideNavTop;
+  background-color: $mainTheme;
+  color: $navTextColor;
+}
+
+.page-content {
+  top: $sideNavTop;
+  padding: 30px;
+  width: calc(100% - #{$sideNavWidth} - 60px);
+}
+.page-area {
+  position: absolute;
+  top: $sideNavTop;
+  display: flex;
+  width: 100%;
+  min-height: calc(100% - #{$sideNavTop});
+}

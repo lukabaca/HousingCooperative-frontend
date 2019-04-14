@@ -1,0 +1,22 @@
+.side-nav {
+  padding-top: 15px;
+  ul {
+    padding-left: 25px;
+    list-style-type: none;
+    li {
+      margin-bottom: 30px;
+      .side-nav-element {
+        cursor: pointer;
+        display: flex;
+        .nav-text {
+          margin-left: 15px;
+          padding-top: 15px;
+          font-size: 20px;
+        }
+        .nav-icon {
+          font-size: 45px;
+        }
+      }
+    }
+  }
+}

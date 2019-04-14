@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../../_services/authentication.service';
 import {User} from '../../_models/user';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 import {error} from 'util';
+import {overrideProvider} from '@angular/core/src/view';
 
 @Component({
   selector: 'app-login',
@@ -11,31 +12,29 @@ import {error} from 'util';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
   user: User;
   wrongCredentials: string;
+  return: string;
   ngOnInit() {
+    if (this.authenticationService.isUserLoggedIn()) {
+      this.router.navigate(['home']);
+    }
     this.user = new User();
+    this.return = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   login() {
-    // const email = 'adam@gmail.com';
-    // const pswd = '1234';
-    // let user = new User();
-    // user.email = email;
-    // user.password = pswd;
     if (this.user.email && this.user.password) {
+      this.wrongCredentials = "";
       this.authenticationService.login(this.user).subscribe(res => {
+        setTimeout(() => {
+          this.router.navigate([('home')]);
+        }, 300);
       },error => {
-          console.log(error);
           this.wrongCredentials = 'Błędne dane logowania';
       });
     }
-  }
-
-  test() {
-    const test = this.authenticationService.getUsers().subscribe((users: User[]) => {
-    });
   }
 
 }

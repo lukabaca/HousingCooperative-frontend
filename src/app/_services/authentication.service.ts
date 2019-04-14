@@ -9,7 +9,7 @@ import {Token} from '../_models/token';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  private apiUrl = environment.apiUrl + 'auth';
+  private apiUrl = environment.apiUrl + 'auth/';
   private currentLoggedUser: User;
   private token: Token;
 
@@ -19,17 +19,17 @@ export class AuthenticationService {
   }
 
   getUsers(): Observable<User[]> {
-    const endpoint = this.apiUrl + '/users';
+    const endpoint = this.apiUrl + 'users';
     return this.http.get<User[]>(endpoint);
   }
 
   getUserData(): Observable<User> {
-    const endpoint = this.apiUrl + '/userData';
+    const endpoint = this.apiUrl + 'userData';
     return this.http.get<User>(endpoint);
   }
 
   public isUserLoggedIn(): boolean {
-    return !!(localStorage.getItem('currentUser') != null && localStorage.getItem('token'));
+    return (localStorage.getItem('currentUser') != null && localStorage.getItem('token') != null);
   }
 
   public getCurrentLoggedUser(): User {
@@ -47,7 +47,7 @@ export class AuthenticationService {
   }
 
   login(user: User) {
-    const endpoint = this.apiUrl + '/login';
+    const endpoint = this.apiUrl + 'login';
     const password = user.password;
     const email = user.email;
     return this.http.post<any>(endpoint, { email, password })
@@ -60,10 +60,12 @@ export class AuthenticationService {
           this.getUserData().subscribe((loggedUser: User) => {
             if (loggedUser) {
               localStorage.setItem('currentUser', JSON.stringify(loggedUser));
+              return loggedUser;
             }
-            // return loggedUser;
+            return null;
           });
           // this.currentUserSubject.next(user);
+          return null;
         }
       }));
   }

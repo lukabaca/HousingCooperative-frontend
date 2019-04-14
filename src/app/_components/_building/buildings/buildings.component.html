@@ -1,0 +1,27 @@
+<div class="component-content">
+  <header>
+    <div class="header-area">
+      <h3 class="header-title">Budynki</h3>
+      <button mat-raised-button class="primary" (click)="addBuilding()">Dodaj budynek</button>
+    </div>
+  </header>
+  <div class="list-content">
+    <table #table mat-table [dataSource]="dataSource">
+      <div *ngFor="let displayColumn of displayedColumns, let i = index">
+        <ng-container matColumnDef="{{displayColumn.key}}">
+          <th mat-header-cell *matHeaderCellDef>{{displayColumn.name}}</th>
+          <td mat-cell *matCellDef="let element"> {{element[displayColumn.key]}}</td>
+        </ng-container>
+      </div>
+
+      <tr mat-header-row *matHeaderRowDef="columnKeys"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnKeys; let i = index" (click)="editBuilding(row)"></tr>
+    </table>
+
+    <mat-paginator [length]="length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageEvent = $event">
+    </mat-paginator>
+  </div>
+</div>

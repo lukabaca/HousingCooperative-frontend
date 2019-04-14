@@ -75,3 +75,10 @@
     }
   }
 }
+
+.error-area {
+  text-align: center;
+  .error-message{
+    color: $errorColor;;
+  }
+}
