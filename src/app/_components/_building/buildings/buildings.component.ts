@@ -4,15 +4,14 @@ import {Router} from '@angular/router';
 import {Building} from '../../../_models/building';
 import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
 import {AddBuildingDialogComponent} from '../../_dialogs/add-building-dialog/add-building-dialog.component';
+import {DataTableConfigurator} from '../../../_helpers/dataTableConfigurator';
 
 @Component({
   selector: 'app-buildings',
   templateUrl: './buildings.component.html',
   styleUrls: ['./buildings.component.scss']
 })
-export class BuildingsComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  dataSource: any;
+export class BuildingsComponent extends DataTableConfigurator implements OnInit {
   buildings: Building[];
   columnKeys: string[] = ['id', 'number', 'address', 'city'];
   displayedColumns = [
@@ -35,7 +34,9 @@ export class BuildingsComponent implements OnInit {
   ];
   constructor(private housingCooperativeService: HousingCooperativeService,
               private router: Router,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+    super();
+  }
 
   ngOnInit() {
     this.getBuildings();
@@ -52,8 +53,8 @@ export class BuildingsComponent implements OnInit {
      return;
    }
    const dialogRef = this.dialog.open(AddBuildingDialogComponent, {
-     height: '400px',
-     width: '300px',
+     height: '450px',
+     width: '350px',
      data: {
        building: editBuilding,
      }
@@ -73,12 +74,13 @@ export class BuildingsComponent implements OnInit {
   }
   addBuilding() {
     const dialogRef = this.dialog.open(AddBuildingDialogComponent, {
-      height: '400px',
-      width: '300px',
+      height: '450px',
+      width: '350px',
     });
 
     dialogRef.afterClosed().subscribe((building: Building) => {
       if (building) {
+        console.log(building);
         this.housingCooperativeService.addBuilding(building).subscribe(res => {
           if (res) {
             this.getBuildings();

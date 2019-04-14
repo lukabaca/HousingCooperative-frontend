@@ -5,6 +5,7 @@ import {Token} from '../_models/token';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Building} from '../_models/building';
+import {HousingCooperative} from '../_models/housingCooperative';
 
 @Injectable({ providedIn: 'root' })
 export class HousingCooperativeService {
@@ -14,6 +15,12 @@ export class HousingCooperativeService {
 
   constructor(private http: HttpClient) {
 
+  }
+
+  public getHousingCooperative(): Observable<HousingCooperative> {
+    const housingCooperativeId = 1;
+    const endpoint = this.apiUrl + "housingCooperative/{id}?id=" + housingCooperativeId;
+    return this.http.get<HousingCooperative>(endpoint);
   }
 
   public getBuildings(): Observable<Building[]> {
