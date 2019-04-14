@@ -5,11 +5,14 @@
 <div class="top-nav-area" *ngIf="canActivate()">
   <app-top-nav></app-top-nav>
 </div>
-<div class="side-nav-area" *ngIf="canActivate()">
-  <app-side-nav></app-side-nav>
-</div>
 <div class="navbar" *ngIf="canActivate()">
 </div>
-<div class="page-content" *ngIf="canActivate()">
-  <router-outlet></router-outlet>
+
+<div class="page-area" *ngIf="canActivate()">
+  <div class="side-nav-area" *ngIf="canActivate()">
+    <app-side-nav></app-side-nav>
+  </div>
+  <div class="page-content" *ngIf="canActivate()">
+    <router-outlet></router-outlet>
+  </div>
 </div>

@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<form #createBuildingForm="ngForm">
+  <div mat-dialog-content>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Adres</mat-label>
+          <input type="text" placeholder="Adres" matInput [(ngModel)]="building.address" name="address" required>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Miasto</mat-label>
+          <input type="text" placeholder="Miasto" matInput [(ngModel)]="building.city" name="city" required>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Numer budynku</mat-label>
+          <input type="number" placeholder="Numer budynku" matInput [(ngModel)]="building.number" name="number" required>
+        </mat-form-field>
+      </div>
+      <!--<mat-form-field>-->
+        <!--<mat-label>Spółdzielnia mieszkaniowa</mat-label>-->
+        <!--<select mat-select>-->
+          <!--<option disabled value="{{building.housingCooperative}}">{{building.housingCooperative.name}}</option>-->
+        <!--</select>-->
+      <!--</mat-form-field>-->
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="false">Anuluj</button>
+    <button mat-button [mat-dialog-close]="building" cdkFocusInitial [disabled]="!canAdd()">Dodaj</button>
+  </div>
+</form>

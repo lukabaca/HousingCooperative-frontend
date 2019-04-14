@@ -2,7 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {HousingCooperativeService} from '../../../_services/housingCooperative.service';
 import {Router} from '@angular/router';
 import {Building} from '../../../_models/building';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
+import {AddBuildingDialogComponent} from '../../_dialogs/add-building-dialog/add-building-dialog.component';
 
 @Component({
   selector: 'app-buildings',
@@ -33,19 +34,34 @@ export class BuildingsComponent implements OnInit {
     },
   ];
   constructor(private housingCooperativeService: HousingCooperativeService,
-              private router: Router) { }
+              private router: Router,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getBuildings();
-    console.log(this.displayedColumns2[0].key);
-    console.log(this.displayedColumns2[0]['key']);
-    // this.dataSource.paginator = this.paginator;
   }
   getBuildings() {
     this.housingCooperativeService.getBuildings().subscribe((buildings: Building[]) => {
       this.buildings = buildings;
       this.dataSource = new MatTableDataSource<Building>(this.buildings);
-      console.log(this.buildings);
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+  addBuilding() {
+    let dialogRef = this.dialog.open(AddBuildingDialogComponent, {
+      height: '400px',
+      width: '300px',
+    });
+
+    dialogRef.afterClosed().subscribe((building: Building) => {
+      if (building) {
+        this.housingCooperativeService.addBuilding(building).subscribe(res => {
+          if (res) {
+            this.getBuildings();
+          }
+        });
+      }
     });
   }
 }

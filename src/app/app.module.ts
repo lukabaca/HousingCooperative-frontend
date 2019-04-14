@@ -15,6 +15,8 @@ import { SideNavComponent } from './_components/common/side-nav/side-nav.compone
 import { TopNavComponent } from './_components/common/top-nav/top-nav.component';
 import { BuildingsComponent } from './_components/_building/buildings/buildings.component';
 import {HousingCooperativeService} from './_services/housingCooperative.service';
+import { AddBuildingDialogComponent } from './_components/_dialogs/add-building-dialog/add-building-dialog.component';
+import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogRef} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,11 @@ import {HousingCooperativeService} from './_services/housingCooperative.service'
     HomeComponent,
     SideNavComponent,
     TopNavComponent,
-    BuildingsComponent
+    BuildingsComponent,
+    AddBuildingDialogComponent,
+  ],
+  entryComponents: [
+    AddBuildingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +44,9 @@ import {HousingCooperativeService} from './_services/housingCooperative.service'
     HousingCooperativeService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true},
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }
   ],
   bootstrap: [AppComponent]
 })

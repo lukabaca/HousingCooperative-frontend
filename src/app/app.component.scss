@@ -1,26 +1,28 @@
 @import "~src/assets/styles/variables.scss";
 
 .side-nav-area {
-  position: fixed;
-  height: calc(100% - #{$sideNavTop});
   width: $sideNavWidth;
-  top: $sideNavTop;
   background-color: $mainTheme;
+  color: $navTextColor;
 }
 
 .top-nav-area {
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: $sideNavTop;
   background-color: $mainTheme;
+  color: $navTextColor;
 }
 
 .page-content {
-  position: fixed;
-  left: $sideNavWidth;
   top: $sideNavTop;
   padding: 30px;
-  height: calc(100% - #{$sideNavTop});
   width: calc(100% - #{$sideNavWidth} - 60px);
-  border-radius: 15px;
+}
+.page-area {
+  position: absolute;
+  top: $sideNavTop;
+  display: flex;
+  width: 100%;
+  min-height: calc(100% - #{$sideNavTop});
 }

@@ -34,6 +34,10 @@ body {
   width: 33%;
 }
 
+button {
+  height: 40px;
+}
+
 .mat-raised-button {
   background-color: #3f51b5 !important;
   color: white;
@@ -50,5 +54,13 @@ body {
 }
 
 table {
+  width: 100%;
+}
+
+.mat-dialog-actions {
+  justify-content: end;
+}
+
+.mat-form-field {
   width: 100%;
 }
