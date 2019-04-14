@@ -2,11 +2,15 @@
 <div *ngIf="!canActivate()">
   <app-login></app-login>
 </div>
+<div class="top-nav-area" *ngIf="canActivate()">
+  <app-top-nav></app-top-nav>
+</div>
+<div class="side-nav-area" *ngIf="canActivate()">
+  <app-side-nav></app-side-nav>
+</div>
 <div class="navbar" *ngIf="canActivate()">
-  Welcome to <span class="test">{{ title }}</span><span (click)="logout()">Wyloguj się</span>
 </div>
 <div class="page-content" *ngIf="canActivate()">
-  <h1 *ngIf="canActivate()">
-  </h1>
+  dupa dupa
   <router-outlet></router-outlet>
 </div>

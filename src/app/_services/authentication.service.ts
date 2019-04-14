@@ -29,7 +29,7 @@ export class AuthenticationService {
   }
 
   public isUserLoggedIn(): boolean {
-    return !!(localStorage.getItem('currentUser') != null && localStorage.getItem('token'));
+    return (localStorage.getItem('currentUser') != null && localStorage.getItem('token') != null);
   }
 
   public getCurrentLoggedUser(): User {
@@ -60,10 +60,12 @@ export class AuthenticationService {
           this.getUserData().subscribe((loggedUser: User) => {
             if (loggedUser) {
               localStorage.setItem('currentUser', JSON.stringify(loggedUser));
+              return loggedUser;
             }
-            // return loggedUser;
+            return null;
           });
           // this.currentUserSubject.next(user);
+          return null;
         }
       }));
   }

@@ -10,11 +10,17 @@ import { LoginComponent } from './_components/login/login.component';
 import {JwtInterceptor} from './_interceptors/jwt.interceptor';
 import {AuthErrorInterceptor} from './_interceptors/authError.interceptor';
 import {FormsModule} from '@angular/forms';
+import { HomeComponent } from './_components/home/home.component';
+import { SideNavComponent } from './_components/common/side-nav/side-nav.component';
+import { TopNavComponent } from './_components/common/top-nav/top-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    SideNavComponent,
+    TopNavComponent
   ],
   imports: [
     BrowserModule,

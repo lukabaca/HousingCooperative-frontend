@@ -1,0 +1,25 @@
+@import "~src/assets/styles/variables.scss";
+
+.side-nav-area {
+  position: fixed;
+  height: calc(100% - #{$sideNavTop});
+  width: $sideNavWidth;
+  top: $sideNavTop;
+  background-color: $mainTheme;
+}
+
+.top-nav-area {
+  position: fixed;
+  width: 100%;
+  height: $sideNavTop;
+  background-color: $mainTheme;
+}
+
+.page-content {
+  position: fixed;
+  left: $sideNavWidth;
+  top: $sideNavTop;
+  padding: 15px;
+  height: calc(100% - #{$sideNavTop});
+  border-radius: 15px;
+}

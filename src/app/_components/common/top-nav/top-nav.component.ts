@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../../../_services/authentication.service';
+import {User} from '../../../_models/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-top-nav',
@@ -8,9 +10,13 @@ import {AuthenticationService} from '../../../_services/authentication.service';
 })
 export class TopNavComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(private authenticationService: AuthenticationService) {
+  currentlyLoggedUser: User;
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) { }
+  ngOnInit() {
+    if (localStorage.getItem('currentUser') != null) {
+      this.currentlyLoggedUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
   }
 
   logout() {

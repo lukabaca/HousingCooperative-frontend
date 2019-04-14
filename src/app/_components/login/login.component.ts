@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../../_services/authentication.service';
 import {User} from '../../_models/user';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 import {error} from 'util';
 
 @Component({
@@ -11,11 +11,13 @@ import {error} from 'util';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
   user: User;
   wrongCredentials: string;
+  return: string;
   ngOnInit() {
     this.user = new User();
+    this.return = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   login() {
@@ -26,8 +28,10 @@ export class LoginComponent implements OnInit {
     // user.password = pswd;
     if (this.user.email && this.user.password) {
       this.authenticationService.login(this.user).subscribe(res => {
+        setTimeout(() => {
+          this.router.navigate([('home')]);
+        }, 300);
       },error => {
-          console.log(error);
           this.wrongCredentials = 'Błędne dane logowania';
       });
     }
