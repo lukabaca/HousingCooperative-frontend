@@ -3,9 +3,9 @@ import {
   MatButtonModule, MatCardModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatPaginatorModule,
   MatSelectModule,
-  MatSidenavModule,
+  MatSidenavModule, MatTableModule,
   MatToolbarModule,
 } from '@angular/material';
 
@@ -18,7 +18,9 @@ import {
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   exports: [
     MatSidenavModule,
@@ -28,7 +30,9 @@ import {
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule {}
