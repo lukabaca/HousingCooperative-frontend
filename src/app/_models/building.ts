@@ -1,4 +1,5 @@
 import {HousingCooperative} from './housingCooperative';
+import {Premise} from "./premise";
 
 export class Building {
   id: number;
@@ -6,4 +7,5 @@ export class Building {
   address: string;
   city: string;
   housingCooperative: HousingCooperative;
+  premises: Premise[];
 }

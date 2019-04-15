@@ -18,6 +18,7 @@ import {HousingCooperativeService} from './_services/housingCooperative.service'
 import { AddBuildingDialogComponent } from './_components/_dialogs/add-building-dialog/add-building-dialog.component';
 import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogRef} from '@angular/material';
 import { LocatorsComponent } from './_components/_locators/locators/locators.component';
+import { BuildingComponent } from './_components/_building/building/building.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LocatorsComponent } from './_components/_locators/locators/locators.com
     BuildingsComponent,
     AddBuildingDialogComponent,
     LocatorsComponent,
+    BuildingComponent,
   ],
   entryComponents: [
     AddBuildingDialogComponent

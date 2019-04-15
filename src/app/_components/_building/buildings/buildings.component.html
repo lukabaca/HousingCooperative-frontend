@@ -6,7 +6,7 @@
     </div>
   </header>
   <div class="list-content">
-    <table #table mat-table [dataSource]="dataSource">
+    <table #table mat-table [dataSource]="dataSource" *ngIf="buildings && buildings.length > 0">
       <div *ngFor="let displayColumn of displayedColumns, let i = index">
         <ng-container matColumnDef="{{displayColumn.key}}">
           <th mat-header-cell *matHeaderCellDef>{{displayColumn.name}}</th>
@@ -15,7 +15,7 @@
       </div>
 
       <tr mat-header-row *matHeaderRowDef="columnKeys"></tr>
-      <tr mat-row *matRowDef="let row; columns: columnKeys; let i = index" (click)="editBuilding(row)"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnKeys; let i = index" (click)="buildingDetails(row)"></tr>
     </table>
 
     <mat-paginator [length]="length"

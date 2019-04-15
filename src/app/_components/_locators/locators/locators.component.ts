@@ -39,6 +39,6 @@ export class LocatorsComponent extends DataTableConfigurator implements OnInit {
   }
 
   registerUser() {
-    
+
   }
 }

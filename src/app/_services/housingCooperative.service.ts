@@ -28,6 +28,11 @@ export class HousingCooperativeService {
     return this.http.get<Building[]>(endpoint);
   }
 
+  public getBuilding(buildingId): Observable<Building> {
+    const endpoint = this.apiUrl + "building/{id}?id=" + buildingId;
+    return this.http.get<Building>(endpoint);
+  }
+
   public addBuilding(building: Building): Observable<Response> {
     const endpoint = this.apiUrl + "building";
     return this.http.post<Response>(endpoint, building);

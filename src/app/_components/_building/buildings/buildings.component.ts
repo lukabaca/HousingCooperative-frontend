@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HousingCooperativeService} from '../../../_services/housingCooperative.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Building} from '../../../_models/building';
 import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
 import {AddBuildingDialogComponent} from '../../_dialogs/add-building-dialog/add-building-dialog.component';
@@ -34,7 +34,7 @@ export class BuildingsComponent extends DataTableConfigurator implements OnInit 
   ];
   constructor(private housingCooperativeService: HousingCooperativeService,
               private router: Router,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,) {
     super();
   }
 
@@ -48,7 +48,7 @@ export class BuildingsComponent extends DataTableConfigurator implements OnInit 
       this.dataSource.paginator = this.paginator;
     });
   }
-  editBuilding(editBuilding) {
+  editBuilding2(editBuilding) {
    if (!editBuilding) {
      return;
    }
@@ -72,6 +72,14 @@ export class BuildingsComponent extends DataTableConfigurator implements OnInit 
      }
    });
   }
+
+  buildingDetails(editBuilding) {
+    if (!editBuilding) {
+      return;
+    }
+    this.router.navigate(['building', editBuilding.id]);
+  }
+
   addBuilding() {
     const dialogRef = this.dialog.open(AddBuildingDialogComponent, {
       height: '450px',

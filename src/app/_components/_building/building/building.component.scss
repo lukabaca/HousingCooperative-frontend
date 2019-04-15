@@ -1,0 +1,16 @@
+.building-details-area {
+  display: flex;
+  margin-top: 20px;
+  .building-info-area {
+    .mat-list-item {
+      display: flex;
+      justify-content: space-between;
+    }
+    .building-details-element {
+      margin-left: 5px;
+    }
+  }
+  .building-premises-area {
+    padding-left: 90px;
+  }
+}
