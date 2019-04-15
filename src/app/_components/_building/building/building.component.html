@@ -5,7 +5,7 @@
       <button mat-raised-button class="primary" (click)="addLocal()">Dodaj lokal</button>
     </div>
   </header>
-  <div class="building-details-area" *ngIf="building">
+  <div class="building-details-area">
     <div class="building-info-area w-33">
       <h5>Dane budynku</h5>
       <mat-list>
@@ -25,7 +25,7 @@
     <div class="building-premises-area w-66">
       <h5>Mieszkania</h5>
       <div class="list-content">
-        <table #table mat-table [dataSource]="dataSource" *ngIf="building.premises.length > 0">
+        <table #table mat-table [dataSource]="dataSource">
           <div *ngFor="let displayColumn of displayedColumns, let i = index">
             <ng-container matColumnDef="{{displayColumn.key}}">
               <th mat-header-cell *matHeaderCellDef>{{displayColumn.name}}</th>
@@ -42,7 +42,7 @@
                        [pageSizeOptions]="pageSizeOptions"
                        (page)="pageEvent = $event">
         </mat-paginator>
-        <span *ngIf="!building.premises.length > 0">Brak przypisanych lokali</span>
+<!--        <span *ngIf="!(building.premises.length > 0)">Brak przypisanych lokali</span>-->
       </div>
     </div>
   </div>
