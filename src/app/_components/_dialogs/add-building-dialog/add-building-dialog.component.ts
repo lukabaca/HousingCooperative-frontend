@@ -22,7 +22,6 @@ export class AddBuildingDialogComponent implements OnInit {
       this.title = 'Edytuj budynek';
       this.buttonConfirmText = 'Zapisz';
       this.building = Object.assign({}, data.building);
-      console.log(this.building);
     } else {
       this.title = 'Dodaj budynek';
       this.buttonConfirmText = 'Dodaj';

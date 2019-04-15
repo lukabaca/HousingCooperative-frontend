@@ -17,6 +17,7 @@ import { BuildingsComponent } from './_components/_building/buildings/buildings.
 import {HousingCooperativeService} from './_services/housingCooperative.service';
 import { AddBuildingDialogComponent } from './_components/_dialogs/add-building-dialog/add-building-dialog.component';
 import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogRef} from '@angular/material';
+import { LocatorsComponent } from './_components/_locators/locators/locators.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogRef} from '@angula
     TopNavComponent,
     BuildingsComponent,
     AddBuildingDialogComponent,
+    LocatorsComponent,
   ],
   entryComponents: [
     AddBuildingDialogComponent
