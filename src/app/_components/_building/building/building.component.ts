@@ -40,11 +40,10 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
     if (this.route.snapshot.params.id) {
       this.buildingId = this.route.snapshot.params.id;
     }
-    this.getBuilding();
   }
 
   ngOnInit() {
-
+    this.getBuilding();
   }
 
   addLocal() {
@@ -57,7 +56,6 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
     }
     this.housingCooperativeService.getBuilding(this.buildingId).subscribe((building: Building) => {
       if (building) {
-        console.log(building);
         this.building = building;
         this.dataSource = new MatTableDataSource<Premise>(this.building.premises);
         this.dataSource.paginator = this.paginator;
