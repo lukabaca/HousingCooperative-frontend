@@ -21,6 +21,7 @@ import { LocatorsComponent } from './_components/_locators/locators/locators.com
 import { BuildingComponent } from './_components/_building/building/building.component';
 import { AddPremisesDialogComponent } from './_components/_dialogs/add-premises-dialog/add-premises-dialog.component';
 import {PremisesService} from './_services/premises.service';
+import { LoadingComponent } from './_components/common/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {PremisesService} from './_services/premises.service';
     LocatorsComponent,
     BuildingComponent,
     AddPremisesDialogComponent,
+    LoadingComponent,
   ],
   entryComponents: [
     AddBuildingDialogComponent,

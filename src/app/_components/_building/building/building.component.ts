@@ -19,6 +19,7 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
   building: Building;
   buildings: Building[];
   columnKeys: string[] = ['id', 'number', 'space', 'roomCount'];
+  isLoading: boolean;
   displayedColumns = [
     {
       "key": "id",
@@ -42,6 +43,7 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
               private premisesService: PremisesService,
               private dialog: MatDialog) {
     super();
+    this.isLoading = true;
     if (this.route.snapshot.params.id) {
       this.buildingId = this.route.snapshot.params.id;
     }
@@ -80,6 +82,7 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
         this.building = building;
         this.dataSource = new MatTableDataSource<Premise>(this.building.premises);
         this.dataSource.paginator = this.paginator;
+        this.isLoading = false;
       }
     });
   }

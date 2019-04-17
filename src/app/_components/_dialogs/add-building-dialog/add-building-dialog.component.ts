@@ -33,7 +33,7 @@ export class AddBuildingDialogComponent implements OnInit {
   }
 
   canAdd() {
-    return this.building.address && this.building.city && this.building.number;
+    return this.building.address && this.building.city && this.building.number >= 0;
   }
 
 }

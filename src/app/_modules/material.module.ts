@@ -3,7 +3,7 @@ import {
   MatButtonModule, MatCardModule, MatDialogModule, MatDividerModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatPaginatorModule,
+  MatListModule, MatPaginatorModule, MatProgressSpinnerModule,
   MatSelectModule,
   MatSidenavModule, MatTableModule,
   MatToolbarModule,
@@ -22,7 +22,8 @@ import {
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressSpinnerModule
 ],
   exports: [
     MatSidenavModule,
@@ -36,7 +37,8 @@ import {
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule {}

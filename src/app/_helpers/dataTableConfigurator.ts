@@ -1,8 +1,9 @@
 import {ViewChild} from '@angular/core';
-import {MatPaginator, PageEvent} from '@angular/material';
+import {MatPaginator, MatSort, PageEvent} from '@angular/material';
 
 export abstract class DataTableConfigurator {
   @ViewChild(MatPaginator) protected paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   protected dataSource: any;
   protected length = 100;
   protected pageSize = 10;
