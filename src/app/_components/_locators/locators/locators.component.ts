@@ -12,15 +12,19 @@ import {Router} from '@angular/router';
 })
 export class LocatorsComponent extends DataTableConfigurator implements OnInit {
   users: User[];
-  columnKeys: string[] = ['id', 'email'];
+  columnKeys: string[] = ['id', 'email', 'userInfo.name', 'userInfo.surname', 'enabled'];
   displayedColumns = [
     {
       "key": "id",
-      "name": "id"
+      "name": "id",
     },
     {
       "key": "email",
-      "name": "email"
+      "name": "email",
+    },
+    {
+      "key": 'userInfo',
+      "name": "imie",
     },
   ];
   isLoading: boolean;
@@ -37,6 +41,7 @@ export class LocatorsComponent extends DataTableConfigurator implements OnInit {
   getLocators() {
     this.authenticationService.getUsers().subscribe((locators: User[]) => {
         this.users = locators;
+        console.log(this.users);
         this.dataSource = new MatTableDataSource<User>(this.users);
         this.dataSource.paginator = this.paginator;
         this.isLoading = false;
@@ -45,5 +50,8 @@ export class LocatorsComponent extends DataTableConfigurator implements OnInit {
 
   registerUser() {
     this.router.navigate(['locator']);
+  }
+  editLocator(element, event) {
+    console.log('edit locator: ', element);
   }
 }
