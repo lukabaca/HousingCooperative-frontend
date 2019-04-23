@@ -65,7 +65,6 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
         if (this.buildingId) {
           premise.buildingId = Number(this.buildingId);
           this.premisesService.addPremise(premise).subscribe((response: Response) => {
-            console.log(response);
             this.getBuilding();
           });
         }
@@ -79,10 +78,10 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
     }
     this.housingCooperativeService.getBuilding(this.buildingId).subscribe((building: Building) => {
       if (building) {
+        this.isLoading = false;
         this.building = building;
         this.dataSource = new MatTableDataSource<Premise>(this.building.premises);
         this.dataSource.paginator = this.paginator;
-        this.isLoading = false;
       }
     });
   }

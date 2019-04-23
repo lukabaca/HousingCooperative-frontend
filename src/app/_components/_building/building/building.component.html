@@ -1,6 +1,6 @@
 <div class="component-content">
   <app-loading *ngIf="isLoading"></app-loading>
-  <div class="content-container" *ngIf="!isLoading">
+  <div class="content-container" [hidden]="isLoading">
     <header>
       <div class="header-area" *ngIf="building">
         <h3 class="header-title">Budynek #{{building.number}}</h3>
