@@ -13,7 +13,8 @@ import {DataTableConfigurator} from '../../../_helpers/dataTableConfigurator';
 })
 export class BuildingsComponent extends DataTableConfigurator implements OnInit {
   buildings: Building[];
-  columnKeys: string[] = ['id', 'number', 'address', 'city'];
+  columnKeys: string[] = ['id', 'number', 'address', 'city', 'edit'];
+  isLoading: boolean;
   displayedColumns = [
     {
       "key": "id",
@@ -31,11 +32,16 @@ export class BuildingsComponent extends DataTableConfigurator implements OnInit 
       "key": "city",
       "name": "miasto"
     },
+    {
+      "key": "edit",
+      "name": "Akcja"
+    },
   ];
   constructor(private housingCooperativeService: HousingCooperativeService,
               private router: Router,
               private dialog: MatDialog,) {
     super();
+    this.isLoading = true;
   }
 
   ngOnInit() {
@@ -46,31 +52,34 @@ export class BuildingsComponent extends DataTableConfigurator implements OnInit 
       this.buildings = buildings;
       this.dataSource = new MatTableDataSource<Building>(this.buildings);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.isLoading = false;
     });
   }
-  editBuilding2(editBuilding) {
-   if (!editBuilding) {
-     return;
-   }
-   const dialogRef = this.dialog.open(AddBuildingDialogComponent, {
-     height: '450px',
-     width: '350px',
-     data: {
-       building: editBuilding,
-     }
-   });
+  editBuilding(editBuilding, event) {
+    event.stopPropagation();
+    if (!editBuilding) {
+      return;
+    }
+    const dialogRef = this.dialog.open(AddBuildingDialogComponent, {
+      height: '400px',
+      width: '350px',
+      data: {
+        building: editBuilding,
+      }
+    });
 
-   dialogRef.afterClosed().subscribe((building: Building) => {
-     console.log(building);
-     if (building) {
-       console.log(building);
-       this.housingCooperativeService.editBuilding(building).subscribe(res => {
-         if (res) {
-           this.getBuildings();
-         }
-       });
-     }
-   });
+    dialogRef.afterClosed().subscribe((building: Building) => {
+      console.log(building);
+      if (building) {
+        console.log(building);
+        this.housingCooperativeService.editBuilding(building).subscribe(res => {
+          if (res) {
+            this.getBuildings();
+          }
+        });
+      }
+    });
   }
 
   buildingDetails(editBuilding) {

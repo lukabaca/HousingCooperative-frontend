@@ -10,10 +10,12 @@ import {BuildingComponent} from "./_components/_building/building/building.compo
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'home', component: BuildingsComponent, canActivate: [AuthGuard]},
   {path: 'buildings', component: BuildingsComponent, canActivate: [AuthGuard]},
   {path: 'building/:id', component: BuildingComponent, canActivate: [AuthGuard]},
-  {path: 'locators', component: LocatorsComponent, canActivate: [AuthGuard]}
+  {path: 'locators', component: LocatorsComponent, canActivate: [AuthGuard]},
+  {path: 'locator/:id', component: LocatorsComponent, canActivate: [AuthGuard]},
+  {path: 'locator', component: LocatorsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

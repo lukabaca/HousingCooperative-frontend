@@ -22,6 +22,6 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]="false">Anuluj</button>
-    <button mat-button [mat-dialog-close]="building" cdkFocusInitial [disabled]="!canAdd()">Dodaj</button>
+    <button mat-button [mat-dialog-close]="building" cdkFocusInitial [disabled]="!canAdd()">{{buttonConfirmText}}</button>
   </div>
 </form>

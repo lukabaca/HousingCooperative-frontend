@@ -19,6 +19,9 @@ import { AddBuildingDialogComponent } from './_components/_dialogs/add-building-
 import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogRef} from '@angular/material';
 import { LocatorsComponent } from './_components/_locators/locators/locators.component';
 import { BuildingComponent } from './_components/_building/building/building.component';
+import { AddPremisesDialogComponent } from './_components/_dialogs/add-premises-dialog/add-premises-dialog.component';
+import {PremisesService} from './_services/premises.service';
+import { LoadingComponent } from './_components/common/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +34,12 @@ import { BuildingComponent } from './_components/_building/building/building.com
     AddBuildingDialogComponent,
     LocatorsComponent,
     BuildingComponent,
+    AddPremisesDialogComponent,
+    LoadingComponent,
   ],
   entryComponents: [
-    AddBuildingDialogComponent
+    AddBuildingDialogComponent,
+    AddPremisesDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +52,7 @@ import { BuildingComponent } from './_components/_building/building/building.com
   providers: [
     AuthenticationService,
     HousingCooperativeService,
+    PremisesService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true},
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},

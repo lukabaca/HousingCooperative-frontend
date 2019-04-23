@@ -3,6 +3,7 @@ import {AuthenticationService} from "../../../_services/authentication.service";
 import {User} from "../../../_models/user";
 import {MatTableDataSource} from "@angular/material";
 import {DataTableConfigurator} from "../../../_helpers/dataTableConfigurator";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-locators',
@@ -22,8 +23,11 @@ export class LocatorsComponent extends DataTableConfigurator implements OnInit {
       "name": "email"
     },
   ];
-  constructor(private authenticationService: AuthenticationService) {
+  isLoading: boolean;
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router) {
     super();
+    this.isLoading = true;
   }
 
   ngOnInit() {
@@ -35,10 +39,11 @@ export class LocatorsComponent extends DataTableConfigurator implements OnInit {
         this.users = locators;
         this.dataSource = new MatTableDataSource<User>(this.users);
         this.dataSource.paginator = this.paginator;
+        this.isLoading = false;
     });
   }
 
   registerUser() {
-
+    this.router.navigate(['locator']);
   }
 }

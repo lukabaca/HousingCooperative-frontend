@@ -1,49 +1,52 @@
 <div class="component-content">
-  <header>
-    <div class="header-area">
-      <h3 class="header-title">Budynek </h3>
-      <button mat-raised-button class="primary" (click)="addLocal()">Dodaj lokal</button>
-    </div>
-  </header>
-  <div class="building-details-area">
-    <div class="building-info-area w-33" *ngIf="building">
-      <h5>Dane budynku</h5>
-      <mat-list>
-        <mat-list-item>
-          <span>Numer: </span><span class="building-details-element">{{building.number}}</span>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <span>Adres: </span><span class="building-details-element">{{building.address}}</span>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <span>Miasto: </span><span class="building-details-element">{{building.city}}</span>
-        </mat-list-item>
-      </mat-list>
-    </div>
-    <div class="building-premises-area w-66" [hidden]="!building">
-      <h5>Mieszkania</h5>
-      <div class="list-content" [hidden]="!(building && building.premises.length > 0)">
-        <table #table mat-table [dataSource]="dataSource">
-          <div *ngFor="let displayColumn of displayedColumns, let i = index">
-            <ng-container matColumnDef="{{displayColumn.key}}">
-              <th mat-header-cell *matHeaderCellDef>{{displayColumn.name}}</th>
-              <td mat-cell *matCellDef="let element"> {{element[displayColumn.key]}}</td>
-            </ng-container>
-          </div>
-
-          <tr mat-header-row *matHeaderRowDef="columnKeys"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnKeys; let i = index"></tr>
-        </table>
-
-        <mat-paginator [length]="length"
-                       [pageSize]="pageSize"
-                       [pageSizeOptions]="pageSizeOptions"
-                       (page)="pageEvent = $event">
-        </mat-paginator>
+  <app-loading *ngIf="isLoading"></app-loading>
+  <div class="content-container" [hidden]="isLoading">
+    <header>
+      <div class="header-area" *ngIf="building">
+        <h3 class="header-title">Budynek #{{building.number}}</h3>
+        <button mat-raised-button class="primary" (click)="addLocal()">Dodaj lokal</button>
       </div>
-      <span *ngIf="building && building.premises.length <= 0">Brak przypisanych lokali</span>
+    </header>
+    <div class="building-details-area">
+      <div class="building-info-area w-33" *ngIf="building">
+        <h5>Dane budynku</h5>
+        <mat-list>
+          <mat-list-item>
+            <span>Numer: </span><span class="building-details-element">{{building.number}}</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <span>Adres: </span><span class="building-details-element">{{building.address}}</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <span>Miasto: </span><span class="building-details-element">{{building.city}}</span>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div class="building-premises-area w-66" [hidden]="!building">
+        <h5>Mieszkania</h5>
+        <div class="list-content" [hidden]="!(building && building.premises.length > 0)">
+          <table #table mat-table [dataSource]="dataSource">
+            <div *ngFor="let displayColumn of displayedColumns, let i = index">
+              <ng-container matColumnDef="{{displayColumn.key}}">
+                <th mat-header-cell *matHeaderCellDef>{{displayColumn.name}}</th>
+                <td mat-cell *matCellDef="let element"> {{element[displayColumn.key]}}</td>
+              </ng-container>
+            </div>
+
+            <tr mat-header-row *matHeaderRowDef="columnKeys"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnKeys; let i = index"></tr>
+          </table>
+
+          <mat-paginator [length]="length"
+                         [pageSize]="pageSize"
+                         [pageSizeOptions]="pageSizeOptions"
+                         (page)="pageEvent = $event">
+          </mat-paginator>
+        </div>
+        <span *ngIf="building && building.premises.length <= 0">Brak przypisanych lokali</span>
+      </div>
     </div>
   </div>
 </div>

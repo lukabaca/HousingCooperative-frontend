@@ -3,4 +3,5 @@ export class Premise {
   number: number;
   space: number;
   roomCount: number;
+  buildingId: number;
 }
