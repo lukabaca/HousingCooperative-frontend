@@ -31,7 +31,23 @@
             <div *ngFor="let displayColumn of displayedColumns, let i = index">
               <ng-container matColumnDef="{{displayColumn.key}}">
                 <th mat-header-cell *matHeaderCellDef>{{displayColumn.name}}</th>
-                <td mat-cell *matCellDef="let element"> {{element[displayColumn.key]}}</td>
+                <div *ngIf="displayColumn.key != 'edit' && displayColumn.key != 'delete'">
+                  <td mat-cell *matCellDef="let element"> {{element[displayColumn.key]}}</td>
+                </div>
+                <div *ngIf="displayColumn.key == 'edit'">
+                  <td mat-cell *matCellDef="let element">
+                    <i class="material-icons">
+                      edit
+                    </i>
+                  </td>
+                </div>
+                <div *ngIf="displayColumn.key == 'delete'">
+                  <td mat-cell *matCellDef="let element" (click)="deletePremise(element, $event)">
+                    <i class="material-icons">
+                      delete
+                    </i>
+                  </td>
+                </div>
               </ng-container>
             </div>
 

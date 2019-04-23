@@ -18,7 +18,7 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
   buildingId: string;
   building: Building;
   buildings: Building[];
-  columnKeys: string[] = ['id', 'number', 'space', 'roomCount'];
+  columnKeys: string[] = ['id', 'number', 'space', 'roomCount', 'edit', 'delete'];
   isLoading: boolean;
   displayedColumns = [
     {
@@ -36,6 +36,14 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
     {
       "key": "roomCount",
       "name": "liczba pokoi"
+    },
+    {
+      "key": "edit",
+      "name": "Edycja"
+    },
+    {
+      "key": "delete",
+      "name": "Usuwanie"
     },
   ];
   constructor(private route: ActivatedRoute,
@@ -83,6 +91,16 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
         this.dataSource = new MatTableDataSource<Premise>(this.building.premises);
         this.dataSource.paginator = this.paginator;
       }
+    });
+  }
+
+  deletePremise(element, event) {
+    event.stopPropagation();
+    if (!element) {
+      return;
+    }
+    this.premisesService.deletePremise(element).subscribe(res => {
+        this.getBuilding();
     });
   }
 }

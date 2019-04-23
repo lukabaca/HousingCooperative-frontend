@@ -16,4 +16,9 @@ export class PremisesService {
     const endpoint = this.apiUrl + "premise";
     return this.http.post<Response>(endpoint, premise);
   }
+
+  deletePremise(premise: Premise): Observable<any> {
+    const endpoint = this.apiUrl + "premise/{id}?id=" + premise.id;
+    return this.http.delete<any>(endpoint);
+  }
 }
