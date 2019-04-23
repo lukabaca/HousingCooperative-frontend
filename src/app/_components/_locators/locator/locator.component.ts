@@ -4,6 +4,7 @@ import {User} from '../../../_models/user';
 import {AuthenticationService} from '../../../_services/authentication.service';
 import {UserInfo} from '../../../_models/userInfo';
 import {Role} from '../../../_models/role';
+import {SnackBarGenerator} from '../../../_helpers/snackBarGenerator';
 
 @Component({
   selector: 'app-locator',
@@ -15,7 +16,8 @@ export class LocatorComponent implements OnInit {
   roles: Role[];
   isEditingUser: boolean;
   constructor(private route: ActivatedRoute,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private snackBar: SnackBarGenerator) {
     this.initForm();
   }
   ngOnInit() {
@@ -53,14 +55,20 @@ export class LocatorComponent implements OnInit {
       this.authenticationService.editUser(this.user).subscribe(res => {
         if (res) {
           console.log('edycja usera o: ', res);
+          this.snackBar.openSnackBar('Poprawnie zaktuliazowane dane użytkownika', true);
         }
+      },  error => {
+        this.snackBar.openSnackBar('Wystąpił błąd', false);
       });
     } else {
       this.authenticationService.addUser(this.user).subscribe(res => {
         if (res) {
           console.log('utworzono usera o: ', res);
+          this.snackBar.openSnackBar('Poprawnie zarejestrowano użytkownika', true);
           locatorForm.resetForm();
         }
+      }, error => {
+        this.snackBar.openSnackBar('Wystąpił błąd', false);
       });
     }
   }

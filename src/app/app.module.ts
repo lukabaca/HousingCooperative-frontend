@@ -23,6 +23,8 @@ import { AddPremisesDialogComponent } from './_components/_dialogs/add-premises-
 import {PremisesService} from './_services/premises.service';
 import { LoadingComponent } from './_components/common/loading/loading.component';
 import { LocatorComponent } from './_components/_locators/locator/locator.component';
+import { SnackBarComponent } from './_components/common/snack-bar/snack-bar.component';
+import {SnackBarGenerator} from './_helpers/snackBarGenerator';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { LocatorComponent } from './_components/_locators/locator/locator.compon
     AddPremisesDialogComponent,
     LoadingComponent,
     LocatorComponent,
+    SnackBarComponent,
   ],
   entryComponents: [
     AddBuildingDialogComponent,
@@ -55,6 +58,7 @@ import { LocatorComponent } from './_components/_locators/locator/locator.compon
     AuthenticationService,
     HousingCooperativeService,
     PremisesService,
+    SnackBarGenerator,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true},
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},

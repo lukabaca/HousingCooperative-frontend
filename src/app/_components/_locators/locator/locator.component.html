@@ -30,7 +30,9 @@
                matInput [(ngModel)]="user.password"
                name="password"
                #password="ngModel"
-               required>
+               required
+               [readonly]="isEditingUser"
+                [disabled]="isEditingUser">
       </mat-form-field>
       <div *ngIf="locatorForm.submitted && password.invalid" class="invalid-feedback">
         <div *ngIf="password.errors.required">Hasło jest wymagane</div>

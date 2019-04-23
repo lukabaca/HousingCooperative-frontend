@@ -4,6 +4,7 @@ import {User} from "../../../_models/user";
 import {MatTableDataSource} from "@angular/material";
 import {DataTableConfigurator} from "../../../_helpers/dataTableConfigurator";
 import {Router} from '@angular/router';
+import {SnackBarGenerator} from '../../../_helpers/snackBarGenerator';
 
 @Component({
   selector: 'app-locators',
@@ -13,7 +14,7 @@ import {Router} from '@angular/router';
 export class LocatorsComponent extends DataTableConfigurator implements OnInit {
   users: User[];
   columnKeys: string[] = ['id', 'email', 'userInfo.name', 'userInfo.surname',
-    'userInfo.birthDate', 'enabled', 'role.value'];
+    'userInfo.birthDate', 'role.value', 'enabled'];
   displayedColumns = [
     {
       "key": "id",
@@ -30,14 +31,15 @@ export class LocatorsComponent extends DataTableConfigurator implements OnInit {
   ];
   isLoading: boolean;
   constructor(private authenticationService: AuthenticationService,
-              private router: Router) {
+              private router: Router,
+              private snackBar: SnackBarGenerator) {
     super();
     this.isLoading = true;
   }
 
   ngOnInit() {
     this.getLocators();
-    console.log(moment.unix( 1555632000000 ).format('MM/DD/YYYY'));
+    // console.log(moment.unix( 1555632000000 ).format('MM/DD/YYYY'));
   }
 
   getLocators() {
@@ -52,9 +54,11 @@ export class LocatorsComponent extends DataTableConfigurator implements OnInit {
   registerUser() {
     this.router.navigate(['locator']);
   }
+
   editLocator(element, event) {
     if (element) {
       this.router.navigate(['locator', element.id]);
     }
   }
+
 }

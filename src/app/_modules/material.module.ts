@@ -5,7 +5,7 @@ import {
   MatInputModule,
   MatListModule, MatPaginatorModule, MatProgressSpinnerModule,
   MatSelectModule,
-  MatSidenavModule, MatTableModule,
+  MatSidenavModule, MatSnackBarModule, MatTableModule,
   MatToolbarModule,
 } from '@angular/material';
 
@@ -23,7 +23,8 @@ import {
     MatPaginatorModule,
     MatDialogModule,
     MatDividerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
 ],
   exports: [
     MatSidenavModule,
@@ -38,7 +39,8 @@ import {
     MatPaginatorModule,
     MatDialogModule,
     MatDividerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule {}

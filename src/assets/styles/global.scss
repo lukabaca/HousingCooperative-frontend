@@ -87,5 +87,17 @@ table {
 .invalid-feedback {
   font-size: 12px;
   font-weight: 100;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  color: $errorColor;
+}
+
+//snackbars
+.snack-bar-success {
+  background-color: $successColor !important;
+  color: white;
+}
+
+.snack-bar-error {
+  background-color: $errorColor !important;
+  color: white;
 }
