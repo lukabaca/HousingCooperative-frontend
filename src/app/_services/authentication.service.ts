@@ -5,22 +5,44 @@ import {User} from '../_models/user';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {Token} from '../_models/token';
+import {Role} from '../_models/role';
+import {RegistrationRequest} from '../_models/_requests/registrationRequest';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private apiUrl = environment.apiUrl + 'auth/';
-  private currentLoggedUser: User;
   private token: Token;
 
   constructor(private http: HttpClient) {
-    // this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    // this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+  getRoles(): Observable<Role[]> {
+    const endpoint = this.apiUrl + 'roles';
+    return this.http.get<Role[]>(endpoint);
   }
 
   getUsers(): Observable<User[]> {
     const endpoint = this.apiUrl + 'users';
     return this.http.get<User[]>(endpoint);
+  }
+
+  getUser(userId): Observable<User> {
+    const endpoint = this.apiUrl + 'user/' + userId;
+    return this.http.get<User>(endpoint);
+  }
+
+  addUser(user: User): Observable<Response> {
+    const endpoint = this.apiUrl + 'register';
+    const registrationBody = new RegistrationRequest();
+    registrationBody.birthDate = user.userInfo.birthDate;
+    registrationBody.email = user.email;
+    registrationBody.name = user.userInfo.name;
+    registrationBody.password = user.password;
+    registrationBody.roleId = user.roleId;
+    registrationBody.surname = user.userInfo.surname;
+    console.log(registrationBody);
+    return this.http.post<Response>(endpoint, registrationBody);
   }
 
   getUserData(): Observable<User> {

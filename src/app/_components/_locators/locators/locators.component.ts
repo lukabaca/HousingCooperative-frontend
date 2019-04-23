@@ -41,7 +41,6 @@ export class LocatorsComponent extends DataTableConfigurator implements OnInit {
   getLocators() {
     this.authenticationService.getUsers().subscribe((locators: User[]) => {
         this.users = locators;
-        console.log(this.users);
         this.dataSource = new MatTableDataSource<User>(this.users);
         this.dataSource.paginator = this.paginator;
         this.isLoading = false;
@@ -52,6 +51,8 @@ export class LocatorsComponent extends DataTableConfigurator implements OnInit {
     this.router.navigate(['locator']);
   }
   editLocator(element, event) {
-    console.log('edit locator: ', element);
+    if (element) {
+      this.router.navigate(['locator', element.id]);
+    }
   }
 }

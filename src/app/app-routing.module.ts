@@ -6,6 +6,7 @@ import {AuthGuard} from './_guards/auth.guard';
 import {BuildingsComponent} from './_components/_building/buildings/buildings.component';
 import {LocatorsComponent} from "./_components/_locators/locators/locators.component";
 import {BuildingComponent} from "./_components/_building/building/building.component";
+import {LocatorComponent} from './_components/_locators/locator/locator.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -14,8 +15,8 @@ const routes: Routes = [
   {path: 'buildings', component: BuildingsComponent, canActivate: [AuthGuard]},
   {path: 'building/:id', component: BuildingComponent, canActivate: [AuthGuard]},
   {path: 'locators', component: LocatorsComponent, canActivate: [AuthGuard]},
-  {path: 'locator/:id', component: LocatorsComponent, canActivate: [AuthGuard]},
-  {path: 'locator', component: LocatorsComponent, canActivate: [AuthGuard]}
+  {path: 'locator/:id', component: LocatorComponent, canActivate: [AuthGuard]},
+  {path: 'locator', component: LocatorComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

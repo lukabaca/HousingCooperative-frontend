@@ -9,4 +9,5 @@ export class User {
   role: Role;
   token?: Token;
   userInfo: UserInfo;
+  roleId?: number;
 }
