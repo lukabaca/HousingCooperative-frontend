@@ -29,7 +29,13 @@ export class AuthenticationService {
 
   getUser(userId): Observable<User> {
     const endpoint = this.apiUrl + 'user/' + userId;
-    return this.http.get<User>(endpoint);
+    return this.http.get<User>(endpoint).pipe(map(user => {
+      if (user) {
+        user.roleId = user.role.id;
+        return user;
+      }
+      return null;
+    }));
   }
 
   addUser(user: User): Observable<Response> {
@@ -41,8 +47,19 @@ export class AuthenticationService {
     registrationBody.password = user.password;
     registrationBody.roleId = user.roleId;
     registrationBody.surname = user.userInfo.surname;
-    console.log(registrationBody);
     return this.http.post<Response>(endpoint, registrationBody);
+  }
+
+  editUser(user: User): Observable<Response> {
+    const endpoint = this.apiUrl + 'user/' + user.id;
+    const registrationBody = new RegistrationRequest();
+    registrationBody.birthDate = user.userInfo.birthDate;
+    registrationBody.email = user.email;
+    registrationBody.name = user.userInfo.name;
+    registrationBody.password = user.password;
+    registrationBody.roleId = user.roleId;
+    registrationBody.surname = user.userInfo.surname;
+    return this.http.put<Response>(endpoint, registrationBody);
   }
 
   getUserData(): Observable<User> {

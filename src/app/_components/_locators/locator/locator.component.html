@@ -4,7 +4,7 @@
   </div>
 </header>
 <div class="new-locator-area w-33">
-  <form #locatorForm="ngForm" (ngSubmit)="locatorForm.form.valid && onSubmit(locatorForm)">
+  <form #locatorForm="ngForm" (ngSubmit)="locatorForm.form.valid && onSubmit(locatorForm)" *ngIf="user">
       <div class="form-group">
         <mat-form-field>
           <mat-label>Email</mat-label>
@@ -84,13 +84,15 @@
     <div class="form-group">
       <mat-form-field>
         <mat-label>Rola użytkownika</mat-label>
-        <mat-select name="role" [(ngModel)]="user.roleId" required #role="ngModel">
-          <mat-option *ngFor="let role of roles" [value]="role.id">{{role.value}}</mat-option>
+        <mat-select name="role" [(ngModel)]="user.roleId" required>
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{role.value}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
-      <div *ngIf="locatorForm.submitted && role.invalid" class="invalid-feedback">
-        <div *ngIf="role.errors.required">Rola jest wymagana</div>
-      </div>
+      <!--<div *ngIf="locatorForm.submitted && role.invalid" class="invalid-feedback">-->
+        <!--<div *ngIf="role.errors.required">Rola jest wymagana</div>-->
+      <!--</div>-->
     </div>
     <button  mat-raised-button class="primary register-btn" type="submit">Rejestruj</button>
   </form>

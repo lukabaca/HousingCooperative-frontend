@@ -12,7 +12,8 @@ import {Router} from '@angular/router';
 })
 export class LocatorsComponent extends DataTableConfigurator implements OnInit {
   users: User[];
-  columnKeys: string[] = ['id', 'email', 'userInfo.name', 'userInfo.surname', 'enabled'];
+  columnKeys: string[] = ['id', 'email', 'userInfo.name', 'userInfo.surname',
+    'userInfo.birthDate', 'enabled', 'role.value'];
   displayedColumns = [
     {
       "key": "id",
@@ -36,6 +37,7 @@ export class LocatorsComponent extends DataTableConfigurator implements OnInit {
 
   ngOnInit() {
     this.getLocators();
+    console.log(moment.unix( 1555632000000 ).format('MM/DD/YYYY'));
   }
 
   getLocators() {
