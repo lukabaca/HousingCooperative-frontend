@@ -7,6 +7,7 @@ import {map} from 'rxjs/operators';
 import {Token} from '../_models/token';
 import {Role} from '../_models/role';
 import {RegistrationRequest} from '../_models/_requests/registrationRequest';
+import {ActivatedRouteSnapshot} from '@angular/router';
 
 
 @Injectable({ providedIn: 'root' })

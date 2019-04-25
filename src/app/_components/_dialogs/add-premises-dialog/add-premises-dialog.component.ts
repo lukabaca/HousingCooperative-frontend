@@ -14,9 +14,15 @@ export class AddPremisesDialogComponent implements OnInit {
   premise: Premise;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<AddPremisesDialogComponent>) {
-    this.title = 'Dodaj lokal';
-    this.buttonConfirmText = ' Dodaj';
-    this.premise = new Premise();
+    if (data && data.premises) {
+      this.title = 'Edytuj lokal';
+      this.buttonConfirmText = ' Zapisz';
+      this.premise = Object.assign({}, data.premises);
+    } else {
+      this.title = 'Dodaj lokal';
+      this.buttonConfirmText = ' Dodaj';
+      this.premise = new Premise();
+    }
   }
 
   ngOnInit() {
@@ -24,10 +30,6 @@ export class AddPremisesDialogComponent implements OnInit {
 
   canAdd() {
     return this.premise.space && this.premise.number && this.premise.roomCount;
-  }
-
-  onSubmit() {
-    console.log('on submit');
   }
 
 }

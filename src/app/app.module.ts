@@ -25,6 +25,7 @@ import { LoadingComponent } from './_components/common/loading/loading.component
 import { LocatorComponent } from './_components/_locators/locator/locator.component';
 import { SnackBarComponent } from './_components/common/snack-bar/snack-bar.component';
 import {SnackBarGenerator} from './_helpers/snackBarGenerator';
+import { AccessForbiddenComponent } from './_components/common/_errors/access-forbidden/access-forbidden.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {SnackBarGenerator} from './_helpers/snackBarGenerator';
     LoadingComponent,
     LocatorComponent,
     SnackBarComponent,
+    AccessForbiddenComponent,
   ],
   entryComponents: [
     AddBuildingDialogComponent,

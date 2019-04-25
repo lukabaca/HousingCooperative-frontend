@@ -61,25 +61,6 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
     this.getBuilding();
   }
 
-  addLocal() {
-    const dialogRef = this.dialog.open(AddPremisesDialogComponent, {
-      height: '400px',
-      width: '350px',
-    });
-
-    dialogRef.afterClosed().subscribe((premise: Premise) => {
-      if (premise) {
-        console.log(premise);
-        if (this.buildingId) {
-          premise.buildingId = Number(this.buildingId);
-          this.premisesService.addPremise(premise).subscribe((response: Response) => {
-            this.getBuilding();
-          });
-        }
-      }
-    });
-  }
-
   getBuilding() {
     if (!this.buildingId) {
       return;
@@ -101,6 +82,48 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
     }
     this.premisesService.deletePremise(element).subscribe(res => {
         this.getBuilding();
+    });
+  }
+
+  addPremises() {
+    const dialogRef = this.dialog.open(AddPremisesDialogComponent, {
+      height: '400px',
+      width: '350px',
+    });
+
+    dialogRef.afterClosed().subscribe((premise: Premise) => {
+      if (premise) {
+        console.log(premise);
+        if (this.buildingId) {
+          premise.buildingId = Number(this.buildingId);
+          this.premisesService.addPremise(premise).subscribe((response: Response) => {
+            this.getBuilding();
+          });
+        }
+      }
+    });
+  }
+
+  editPremises(editPremises, event) {
+    event.stopPropagation();
+    if (!editPremises) {
+      return;
+    }
+    const dialogRef = this.dialog.open(AddPremisesDialogComponent, {
+      height: '400px',
+      width: '350px',
+      data: {
+        premises: editPremises,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((premise: Premise) => {
+      if (premise) {
+        console.log(premise);
+        this.premisesService.editPremise(premise).subscribe((response: Response) => {
+          this.getBuilding();
+        });
+      }
     });
   }
 }
