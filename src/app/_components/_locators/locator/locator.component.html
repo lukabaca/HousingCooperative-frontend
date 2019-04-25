@@ -1,0 +1,101 @@
+<header>
+  <div class="header-area">
+    <h3 class="header-title">Rejestrowanie lokatora</h3>
+  </div>
+</header>
+<div class="new-locator-area w-33">
+  <form #locatorForm="ngForm" (ngSubmit)="locatorForm.form.valid && onSubmit(locatorForm)" *ngIf="user">
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="email"
+                 placeholder="Email"
+                 matInput
+                 [(ngModel)]="user.email"
+                 name="email"
+                 #email="ngModel"
+                 [email]="true"
+                 required>
+        </mat-form-field>
+        <div *ngIf="locatorForm.submitted && email.invalid" class="invalid-feedback">
+          <div *ngIf="email.errors.required">Adres email jest wymagany</div>
+          <div *ngIf="email.errors.email">Błędny adres email</div>
+        </div>
+      </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Hasło</mat-label>
+        <input type="password"
+               placeholder="Hasło"
+               matInput [(ngModel)]="user.password"
+               name="password"
+               #password="ngModel"
+               required
+               [readonly]="isEditingUser"
+                [disabled]="isEditingUser">
+      </mat-form-field>
+      <div *ngIf="locatorForm.submitted && password.invalid" class="invalid-feedback">
+        <div *ngIf="password.errors.required">Hasło jest wymagane</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Imię</mat-label>
+        <input type="text"
+               placeholder="Imię"
+               matInput [(ngModel)]="user.userInfo.name"
+               name="name"
+               #name="ngModel"
+               required>
+      </mat-form-field>
+      <div *ngIf="locatorForm.submitted && name.invalid" class="invalid-feedback">
+        <div *ngIf="name.errors.required">Imię jest wymagane</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Nazwisko</mat-label>
+        <input type="text"
+               placeholder="Nazwisko"
+               matInput
+               [(ngModel)]="user.userInfo.surname"
+               name="surname"
+               #surname="ngModel"
+               required>
+      </mat-form-field>
+      <div *ngIf="locatorForm.submitted && surname.invalid" class="invalid-feedback">
+        <div *ngIf="surname.errors.required">Nazwisko jest wymagane</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="date-form-field">
+        <mat-label>Data urodzenia</mat-label>
+        <input
+          type="date"
+          placeholder="Email"
+          matInput
+          [(ngModel)]="user.userInfo.birthDate"
+          name="birthDate"
+          #birthDate="ngModel"
+          required>
+      </mat-form-field>
+      <div *ngIf="locatorForm.submitted && birthDate.invalid" class="invalid-feedback">
+        <div *ngIf="birthDate.errors.required">Data urodzenia jest wymagana</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Rola użytkownika</mat-label>
+        <mat-select name="role" [(ngModel)]="user.roleId" required>
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{role.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!--<div *ngIf="locatorForm.submitted && role.invalid" class="invalid-feedback">-->
+        <!--<div *ngIf="role.errors.required">Rola jest wymagana</div>-->
+      <!--</div>-->
+    </div>
+    <button  mat-raised-button class="primary register-btn" type="submit">Rejestruj</button>
+  </form>
+</div>

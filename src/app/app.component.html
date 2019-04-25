@@ -1,13 +1,9 @@
-
 <div *ngIf="!canActivate()">
   <app-login></app-login>
 </div>
 <div class="top-nav-area" *ngIf="canActivate()">
   <app-top-nav></app-top-nav>
 </div>
-<div class="navbar" *ngIf="canActivate()">
-</div>
-
 <div class="page-area" *ngIf="canActivate()">
   <div class="side-nav-area" *ngIf="canActivate()">
     <app-side-nav></app-side-nav>
@@ -16,3 +12,7 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+
+
+
+

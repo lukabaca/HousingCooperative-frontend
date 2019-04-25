@@ -9,11 +9,11 @@ import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from '@angular/rout
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
   title = 'front';
-
-  constructor(private authenticationService: AuthenticationService, private router: Router) {
-
+  constructor(private authenticationService: AuthenticationService, private router: Router,
+             ) {
   }
 
   ngOnInit() {
@@ -26,9 +26,5 @@ export class AppComponent implements OnInit {
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/']);
-  }
-
-  test2() {
-    this.router.navigate(['/home']);
   }
 }

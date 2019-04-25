@@ -13,7 +13,17 @@ export class PremisesService {
   }
 
   addPremise(premise: Premise): Observable<Response> {
-    const endpoint = this.apiUrl + "premise";
+    const endpoint = this.apiUrl + 'premise';
     return this.http.post<Response>(endpoint, premise);
+  }
+
+  editPremise(premise: Premise): Observable<Response> {
+    const endpoint = this.apiUrl + 'premise/{id}?id=' + premise.id;
+    return this.http.put<Response>(endpoint, premise);
+  }
+
+  deletePremise(premise: Premise): Observable<any> {
+    const endpoint = this.apiUrl + 'premise/{id}?id=' + premise.id;
+    return this.http.delete<any>(endpoint);
   }
 }
