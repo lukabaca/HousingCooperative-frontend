@@ -3,8 +3,8 @@
   <div class="content-container" [hidden]="isLoading">
     <header>
       <div class="header-area">
-        <h3 class="header-title">Budynki</h3>
-        <button mat-raised-button class="primary" (click)="addBuilding()">Dodaj budynek</button>
+        <h3 class="header-title">{{ 'buildings-title' | translate}}</h3>
+        <button mat-raised-button class="primary" (click)="addBuilding()">{{ 'buildings-add-building' | translate}}</button>
       </div>
     </header>
     <div class="list-content">

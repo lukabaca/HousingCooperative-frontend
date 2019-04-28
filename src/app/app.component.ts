@@ -14,19 +14,13 @@ import {TranslateService} from './_services/translate.service';
 export class AppComponent implements OnInit {
   title = 'front';
 
-  languageList = [
-    { code: 'en', label: 'English' },
-    { code: 'pl', label: 'हिंदी' },
-  ];
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
-              @Inject(LOCALE_ID) protected localeId: string,
               private translate: TranslateService
              ) {
   }
 
   ngOnInit() {
-    console.log(this.localeId);
   }
 
   canActivate() {

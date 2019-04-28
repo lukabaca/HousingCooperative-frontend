@@ -1,12 +1,11 @@
 <div class="top-nav">
-  <!--Welcome to <span class="test" (click)="test2()">{{ title }}</span><span (click)="logout()">Wyloguj się</span>-->
-  <span class="logo" routerLink="/home">Spółdzielnia</span>
+  <span class="logo" routerLink="/home">{{ 'top-nav-logo' | translate}}</span>
   <div class="user-area">
     <div class="translation-area">
       <button mat-flat-button class="md-primary" (click)="setLang('en')">EN</button>
       <button mat-flat-button class="md-primary" (click)="setLang('pl')">PL</button>
     </div>
     <span class="logged-user-info">{{ currentlyLoggedUser.email }}</span>
-    <span class="logout" (click)="logout()">Wyloguj się</span>
+    <span class="logout" (click)="logout()">{{'sign-out-title' | translate}}</span>
   </div>
 </div>
