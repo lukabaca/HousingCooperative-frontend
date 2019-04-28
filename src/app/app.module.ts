@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {LOCALE_ID, NgModule, TRANSLATIONS, TRANSLATIONS_FORMAT} from '@angular/core';
+import {APP_INITIALIZER, LOCALE_ID, NgModule, TRANSLATIONS, TRANSLATIONS_FORMAT} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MaterialModule} from './_modules/material.module';
@@ -26,6 +26,13 @@ import { LocatorComponent } from './_components/_locators/locator/locator.compon
 import { SnackBarComponent } from './_components/common/snack-bar/snack-bar.component';
 import {SnackBarGenerator} from './_helpers/snackBarGenerator';
 import { AccessForbiddenComponent } from './_components/common/_errors/access-forbidden/access-forbidden.component';
+import {TranslateService} from './_services/translate.service';
+import { TranslatePipe } from './_pipes/translate.pipe';
+
+export function setupTranslateFactory(
+  service: TranslateService) {
+  return () => service.use('pl');
+}
 
 @NgModule({
   declarations: [
@@ -43,6 +50,7 @@ import { AccessForbiddenComponent } from './_components/common/_errors/access-fo
     LocatorComponent,
     SnackBarComponent,
     AccessForbiddenComponent,
+    TranslatePipe,
   ],
   entryComponents: [
     AddBuildingDialogComponent,
@@ -61,6 +69,12 @@ import { AccessForbiddenComponent } from './_components/common/_errors/access-fo
     HousingCooperativeService,
     PremisesService,
     SnackBarGenerator,
+    TranslateService, {
+      provide: APP_INITIALIZER,
+      useFactory: setupTranslateFactory,
+      deps: [ TranslateService ],
+      multi: true
+    },
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true},
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},

@@ -3,11 +3,6 @@
 </div>
 <div class="top-nav-area" *ngIf="canActivate()">
   <app-top-nav></app-top-nav>
-  <ng-container *ngFor="let language of languageList">
-    <a href="/{{language.code}}/">
-      <button class="button">{{language.label}}</button>
-    </a>
-  </ng-container>
 </div>
 <div class="page-area" *ngIf="canActivate()">
   <div class="side-nav-area" *ngIf="canActivate()">

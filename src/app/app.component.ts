@@ -3,6 +3,7 @@ import {AuthenticationService} from './_services/authentication.service';
 import {User} from './_models/user';
 import {AuthGuard} from './_guards/auth.guard';
 import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from '@angular/router';
+import {TranslateService} from './_services/translate.service';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +20,13 @@ export class AppComponent implements OnInit {
   ];
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
-              @Inject(LOCALE_ID) protected localeId: string
+              @Inject(LOCALE_ID) protected localeId: string,
+              private translate: TranslateService
              ) {
   }
 
   ngOnInit() {
+    console.log(this.localeId);
   }
 
   canActivate() {
