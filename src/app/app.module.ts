@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule, TRANSLATIONS, TRANSLATIONS_FORMAT} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MaterialModule} from './_modules/material.module';
@@ -65,7 +65,10 @@ import { AccessForbiddenComponent } from './_components/common/_errors/access-fo
     {provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true},
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
     { provide: MAT_DIALOG_DATA, useValue: {} },
-    { provide: MatDialogRef, useValue: {} }
+    { provide: MatDialogRef, useValue: {} },
+    { provide: LOCALE_ID, useValue: 'pl' }
+    // {provide: TRANSLATIONS, useValue: translations},
+    // {provide: TRANSLATIONS_FORMAT, useValue: 'xlf'},
   ],
   bootstrap: [AppComponent]
 })

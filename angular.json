@@ -56,6 +56,24 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "pl": {
+              "aot": true,
+              "outputPath": "dist/front-pl/",
+              "i18nFile": "src/translate/messages.pl.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "pl",
+              "i18nMissingTranslation": "error",
+              "baseHref": "/pl/"
+            },
+            "en": {
+              "aot": true,
+              "outputPath": "dist/front-en/",
+              "i18nFile": "src/translate/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en",
+              "i18nMissingTranslation": "error",
+              "baseHref": "/en/"
             }
           }
         },
@@ -67,6 +85,12 @@
           "configurations": {
             "production": {
               "browserTarget": "front:build:production"
+            },
+            "pl": {
+              "browserTarget": "front:build:pl"
+            },
+            "en": {
+              "browserTarget": "front:build:en"
             }
           }
         },
