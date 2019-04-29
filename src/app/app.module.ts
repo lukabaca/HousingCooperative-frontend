@@ -28,6 +28,7 @@ import {SnackBarGenerator} from './_helpers/snackBarGenerator';
 import { AccessForbiddenComponent } from './_components/common/_errors/access-forbidden/access-forbidden.component';
 import {TranslateService} from './_services/translate.service';
 import { TranslatePipe } from './_pipes/translate.pipe';
+import { PremisesDetailsComponent } from './_components/_premises/premises-details/premises-details.component';
 
 export function setupTranslateFactory(
   service: TranslateService) {
@@ -51,6 +52,7 @@ export function setupTranslateFactory(
     SnackBarComponent,
     AccessForbiddenComponent,
     TranslatePipe,
+    PremisesDetailsComponent,
   ],
   entryComponents: [
     AddBuildingDialogComponent,

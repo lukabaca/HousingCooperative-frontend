@@ -1,0 +1,17 @@
+.premise-details-area {
+  margin-top: 45px;
+  .premise-info {
+    display: flex;
+    justify-content: space-between;
+    .info-element {
+      font-size: 18px;
+      text-align: center;
+      .element {
+        margin-left: 15px;
+      }
+      .info-element-title {
+        font-weight: 500;
+      }
+    }
+  }
+}

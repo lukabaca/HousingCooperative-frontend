@@ -12,6 +12,11 @@ export class PremisesService {
 
   }
 
+  getPremise(premiseId): Observable<Premise> {
+    const endpoint = this.apiUrl + 'premise/{id}?id=' + premiseId;
+    return this.http.get<Premise>(endpoint);
+  }
+
   addPremise(premise: Premise): Observable<Response> {
     const endpoint = this.apiUrl + 'premise';
     return this.http.post<Response>(endpoint, premise);
