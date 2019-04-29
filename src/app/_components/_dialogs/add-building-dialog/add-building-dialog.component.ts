@@ -12,20 +12,17 @@ import {HousingCooperative} from '../../../_models/housingCooperative';
 
 export class AddBuildingDialogComponent implements OnInit {
 
-  title: string;
-  buttonConfirmText: string;
   building: Building;
+  isEditing: boolean;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<AddBuildingDialogComponent>,) {
     if (data && data.building) {
-      this.title = 'Edytuj budynek';
-      this.buttonConfirmText = 'Zapisz';
       this.building = Object.assign({}, data.building);
+      this.isEditing = true;
     } else {
-      this.title = 'Dodaj budynek';
-      this.buttonConfirmText = 'Dodaj';
       this.building = new Building();
+      this.isEditing = false;
     }
   }
 

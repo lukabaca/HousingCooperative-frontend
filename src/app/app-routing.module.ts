@@ -24,6 +24,7 @@ const routes: Routes = [
   {path: 'locators', component: LocatorsComponent, canActivate: [AuthGuard]},
   {path: 'locator/:id', component: LocatorComponent, canActivate: [AuthGuard]},
   {path: 'locator', component: LocatorComponent, canActivate: [AuthGuard]},
+  {path: 'accessForbidden', component: AccessForbiddenComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

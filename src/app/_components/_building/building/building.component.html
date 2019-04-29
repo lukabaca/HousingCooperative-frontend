@@ -3,29 +3,29 @@
   <div class="content-container" [hidden]="isLoading">
     <header>
       <div class="header-area" *ngIf="building">
-        <h3 class="header-title">Budynek #{{building.number}}</h3>
-        <button mat-raised-button class="primary" (click)="addPremises()">Dodaj lokal</button>
+        <h3 class="header-title">{{ 'building-details-title' | translate}} #{{building.number}}</h3>
+        <button mat-raised-button class="primary" (click)="addPremises()">{{ 'building-details-add-premise' | translate}}</button>
       </div>
     </header>
     <div class="building-details-area">
       <div class="building-info-area w-33" *ngIf="building">
-        <h5>Dane budynku</h5>
+        <h5>{{ 'building-details-data-title' | translate}}</h5>
         <mat-list>
           <mat-list-item>
-            <span>Numer: </span><span class="building-details-element">{{building.number}}</span>
+            <span>{{ 'building-details-number' | translate}}: </span><span class="building-details-element">{{building.number}}</span>
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
-            <span>Adres: </span><span class="building-details-element">{{building.address}}</span>
+            <span>{{ 'building-details-address' | translate}}: </span><span class="building-details-element">{{building.address}}</span>
           </mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
-            <span>Miasto: </span><span class="building-details-element">{{building.city}}</span>
+            <span>{{ 'building-details-city' | translate}}: </span><span class="building-details-element">{{building.city}}</span>
           </mat-list-item>
         </mat-list>
       </div>
       <div class="building-premises-area w-66" [hidden]="!building">
-        <h5>Mieszkania</h5>
+        <h5>{{ 'building-details-premises-title' | translate}}</h5>
         <div class="list-content" [hidden]="!(building && building.premises.length > 0)">
           <table #table mat-table [dataSource]="dataSource">
             <div *ngFor="let displayColumn of displayedColumns, let i = index">

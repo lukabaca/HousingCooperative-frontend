@@ -3,8 +3,8 @@
   <div class="content-container" [hidden]="isLoading">
     <header>
       <div class="header-area">
-        <h3 class="header-title">Lokatorzy</h3>
-        <button mat-raised-button class="primary" (click)="registerUser()">Zarejestruj użytkownika</button>
+        <h3 class="header-title">{{ 'premises-title' | translate}}</h3>
+        <button mat-raised-button class="primary" (click)="registerUser()">{{ 'premises-registerUser' | translate}}</button>
       </div>
     </header>
     <div class="list-content" [hidden]="!users">

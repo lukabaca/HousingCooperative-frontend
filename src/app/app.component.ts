@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
 import {AuthenticationService} from './_services/authentication.service';
 import {User} from './_models/user';
 import {AuthGuard} from './_guards/auth.guard';
 import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from '@angular/router';
+import {TranslateService} from './_services/translate.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,10 @@ import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from '@angular/rout
 
 export class AppComponent implements OnInit {
   title = 'front';
-  constructor(private authenticationService: AuthenticationService, private router: Router,
+
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router,
+              private translate: TranslateService
              ) {
   }
 

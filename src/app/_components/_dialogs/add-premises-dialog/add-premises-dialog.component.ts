@@ -8,19 +8,15 @@ import {Premise} from '../../../_models/premise';
   styleUrls: ['./add-premises-dialog.component.scss']
 })
 export class AddPremisesDialogComponent implements OnInit {
-
-  title: string;
-  buttonConfirmText: string;
   premise: Premise;
+  isEditing: boolean;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<AddPremisesDialogComponent>) {
     if (data && data.premises) {
-      this.title = 'Edytuj lokal';
-      this.buttonConfirmText = ' Zapisz';
+      this.isEditing = true;
       this.premise = Object.assign({}, data.premises);
     } else {
-      this.title = 'Dodaj lokal';
-      this.buttonConfirmText = ' Dodaj';
+      this.isEditing = false;
       this.premise = new Premise();
     }
   }

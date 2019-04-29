@@ -29,7 +29,6 @@ export class LocatorComponent implements OnInit {
       const userId = this.route.snapshot.params.id;
       this.authenticationService.getUser(userId).subscribe((user: User) => {
         if (user) {
-          console.log(user);
           this.user = user;
           this.isEditingUser = true;
         }
@@ -49,12 +48,9 @@ export class LocatorComponent implements OnInit {
   }
 
   onSubmit(locatorForm) {
-    console.log('form: ', locatorForm);
-    console.log('user to regsiter: ', this.user);
     if (this.isEditingUser) {
       this.authenticationService.editUser(this.user).subscribe(res => {
         if (res) {
-          console.log('edycja usera o: ', res);
           this.snackBar.openSnackBar('Poprawnie zaktuliazowane dane użytkownika', true);
         }
       },  error => {
@@ -63,7 +59,6 @@ export class LocatorComponent implements OnInit {
     } else {
       this.authenticationService.addUser(this.user).subscribe(res => {
         if (res) {
-          console.log('utworzono usera o: ', res);
           this.snackBar.openSnackBar('Poprawnie zarejestrowano użytkownika', true);
           locatorForm.resetForm();
         }
