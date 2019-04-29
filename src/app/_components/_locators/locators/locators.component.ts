@@ -39,7 +39,6 @@ export class LocatorsComponent extends DataTableConfigurator implements OnInit {
 
   ngOnInit() {
     this.getLocators();
-    // console.log(moment.unix( 1555632000000 ).format('MM/DD/YYYY'));
   }
 
   getLocators() {

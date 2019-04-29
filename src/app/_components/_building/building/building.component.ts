@@ -93,7 +93,6 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
 
     dialogRef.afterClosed().subscribe((premise: Premise) => {
       if (premise) {
-        console.log(premise);
         if (this.buildingId) {
           premise.buildingId = Number(this.buildingId);
           this.premisesService.addPremise(premise).subscribe((response: Response) => {
@@ -119,7 +118,6 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
 
     dialogRef.afterClosed().subscribe((premise: Premise) => {
       if (premise) {
-        console.log(premise);
         this.premisesService.editPremise(premise).subscribe((response: Response) => {
           this.getBuilding();
         });

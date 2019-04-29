@@ -71,7 +71,6 @@ export class BuildingsComponent extends DataTableConfigurator implements OnInit 
 
     dialogRef.afterClosed().subscribe((building: Building) => {
       if (building) {
-        console.log(building);
         this.housingCooperativeService.editBuilding(building).subscribe(res => {
           if (res) {
             this.getBuildings();
@@ -96,7 +95,6 @@ export class BuildingsComponent extends DataTableConfigurator implements OnInit 
 
     dialogRef.afterClosed().subscribe((building: Building) => {
       if (building) {
-        console.log(building);
         this.housingCooperativeService.addBuilding(building).subscribe(res => {
           if (res) {
             this.getBuildings();
