@@ -31,4 +31,14 @@ export class PremisesService {
     const endpoint = this.apiUrl + 'premise/{id}?id=' + premise.id;
     return this.http.delete<any>(endpoint);
   }
+
+  addLocatorToPremises(premisesId, locatorId): Observable<any> {
+    const endpoint = this.apiUrl + `addLocatorToPremises/${premisesId}/${locatorId}`;
+    return this.http.put<any>(endpoint, null);
+  }
+
+  deleteLocatorFromPremise(premisesId, locatorId): Observable<any> {
+    const endpoint = this.apiUrl + `deleteLocatorFromPremises/${premisesId}/${locatorId}`;
+    return this.http.delete<any>(endpoint);
+  }
 }

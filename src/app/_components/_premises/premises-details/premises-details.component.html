@@ -20,7 +20,14 @@
   <div class="locators-list">
     <mat-list *ngIf="premise && premise.appUser.length > 0">
       <div *ngFor="let locator of premise.appUser">
-        <mat-list-item> {{locator.userInfo.surname}} </mat-list-item>
+        <mat-list-item>
+          {{locator.userInfo.name}} {{locator.userInfo.surname}}
+          <span class="delete-locator" (click)="deleteLocator(locator.id)">
+            <i class="material-icons">
+                      delete
+            </i>
+          </span>
+        </mat-list-item>
         <mat-divider></mat-divider>
       </div>
     </mat-list>
