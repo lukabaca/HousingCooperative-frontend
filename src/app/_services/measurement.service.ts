@@ -37,7 +37,7 @@ export class MeasurementService {
 
   updateMeasurement(measurement: Measurement): Observable<Response> {
     const endpoint = this.apiUrl + `measurement/${measurement.id}`;
-    return this.http.post<Response>(endpoint, measurement);
+    return this.http.put<Response>(endpoint, measurement);
   }
 
   changeMeasurementStatus(measurementId, measurementStatusRequest: StateAcceptedRequest): Observable<Response> {

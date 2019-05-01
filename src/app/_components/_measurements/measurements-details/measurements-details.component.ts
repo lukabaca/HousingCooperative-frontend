@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MeasurementService} from '../../../_services/measurement.service';
 import {Measurement} from '../../../_models/measurement';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {StateAcceptedRequest} from '../../../_models/_requests/stateAcceptedRequest';
 import {SnackBarGenerator} from '../../../_helpers/snackBarGenerator';
+import {AuthGuard} from '../../../_guards/auth.guard';
 
 @Component({
   selector: 'app-measurements-details',
@@ -16,7 +17,9 @@ export class MeasurementsDetailsComponent implements OnInit {
   measurement: Measurement;
   constructor(private measurementsService: MeasurementService,
               private route: ActivatedRoute,
-              private snackBar: SnackBarGenerator) {
+              private snackBar: SnackBarGenerator,
+              private authGuard: AuthGuard,
+              private router: Router) {
     if (this.route.snapshot.params.id) {
       this.measurementId = this.route.snapshot.params.id;
     }
@@ -50,5 +53,10 @@ export class MeasurementsDetailsComponent implements OnInit {
       this.snackBar.openSnackBar('Odrzucono odczyt', true);
       this.getMeasurement();
     });
+  }
+
+  editMeasurement() {
+    console.log('router ', this.measurementId);
+    this.router.navigate(['addMeasurement', this.measurementId]);
   }
 }

@@ -2,9 +2,12 @@
   <header>
     <div class="header-area">
       <h3 class="header-title">Odczyt za {{measurement.month}}.{{measurement.year}} dla lokalu nr: {{measurement.premise.number}}</h3>
-      <div class="buttons-area">
+      <div class="buttons-area" *ngIf="authGuard.hasRole(['ROLE_ADMIN'])">
         <button mat-raised-button class="primary accept-measurement" (click)="acceptMeasurement()" [disabled]="measurement.accepted">Zatwierdź odczyt</button>
         <button mat-raised-button color="warn" (click)="denyMeasurement()">Odrzuć odczyt</button>
+      </div>
+      <div class="user-editing-measurement" *ngIf="authGuard.hasRole(['ROLE_USER'])">
+        <button mat-raised-button class="primary" [disabled]="measurement.accepted" (click)="editMeasurement()">Edytuj odczyt</button>
       </div>
     </div>
     <div class="measurement-state-info">

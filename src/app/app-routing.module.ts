@@ -35,6 +35,7 @@ const routes: Routes = [
   {path: 'premises/:id', component: PremisesDetailsComponent, canActivate: [AuthGuard]},
   {path: 'measurements', component: MeasurementsComponent, canActivate: [AuthGuard]},
   {path: 'addMeasurement', component: AddMeasurementComponent, canActivate: [AuthGuard]},
+  {path: 'addMeasurement/:id', component: AddMeasurementComponent, canActivate: [AuthGuard]},
   {path: 'userMeasurements', component: UserMeasurementsComponent, canActivate: [AuthGuard]},
   {path: 'measurements/:id', component: MeasurementsDetailsComponent, canActivate: [AuthGuard]},
   {path: 'bills', component: BillsComponent, canActivate: [AuthGuard]},
