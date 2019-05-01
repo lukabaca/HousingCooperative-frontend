@@ -24,6 +24,11 @@ export class MeasurementService {
     return this.http.get<Measurement[]>(endpoint);
   }
 
+  getUserMeasurements(): Observable<Measurement[]> {
+    const endpoint = this.apiUrl + 'getUserMeasurements';
+    return this.http.get<Measurement[]>(endpoint);
+  }
+
   createMeasurement(measurement: Measurement): Observable<Response> {
     const endpoint = this.apiUrl + 'measurement';
     return this.http.post<Response>(endpoint, measurement);

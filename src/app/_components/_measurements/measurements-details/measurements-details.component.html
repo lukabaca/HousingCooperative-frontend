@@ -1,18 +1,24 @@
 <div class="component-content" *ngIf="measurement">
   <header>
     <div class="header-area">
-      <h3 class="header-title">Odczyt za {{measurement.month}}.{{measurement.year}} dla lokalu nr: {{measurement.premise.number}}}</h3>
+      <h3 class="header-title">Odczyt za {{measurement.month}}.{{measurement.year}} dla lokalu nr: {{measurement.premise.number}}</h3>
       <div class="buttons-area">
-        <button mat-raised-button class="primary accept-bill" (click)="acceptMeasurement()" [disabled]="measurement.accepted">Zatwierdź odczyt</button>
+        <button mat-raised-button class="primary accept-measurement" (click)="acceptMeasurement()" [disabled]="measurement.accepted">Zatwierdź odczyt</button>
         <button mat-raised-button color="warn" (click)="denyMeasurement()">Odrzuć odczyt</button>
       </div>
     </div>
     <div class="measurement-state-info">
       <div class="state-block">
-        <span>Stan akceptacji: </span><span>{{measurement.accepted == true ? 'Zaakceptowany' : 'Niezaakceptowany'}}</span>
+        <span>Stan akceptacji: </span>
+        <span class="{{measurement.accepted == true ? 'status-ok' : 'status-not-ok'}}">
+          {{measurement.accepted == true ? 'Zaakceptowany' : 'Niezaakceptowany'}}
+        </span>
       </div>
       <div class="state-block">
-        <span>Stan rozpatrzenia odczytu: </span><span>{{!measurement.checked ? 'Oczekujący na potwierdzenie' : 'Potwierdzony'}}</span>
+        <span>Stan rozpatrzenia odczytu: </span>
+        <span class="{{measurement.checked == true ? 'status-ok' : 'status-not-ok'}}">
+          {{!measurement.checked ? 'Oczekujący na potwierdzenie' : 'Potwierdzony'}}
+        </span>
       </div>
     </div>
   </header>

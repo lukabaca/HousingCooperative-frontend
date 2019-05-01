@@ -13,6 +13,7 @@ import {MeasurementsComponent} from './_components/_measurements/measurements/me
 import {MeasurementsDetailsComponent} from './_components/_measurements/measurements-details/measurements-details.component';
 import {BillsComponent} from './_components/_bills/bills/bills.component';
 import {BillDetailsComponent} from './_components/_bills/bill-details/bill-details.component';
+import {UserMeasurementsComponent} from './_components/_measurements/user-measurements/user-measurements.component';
 
 const Roles = {
   ADMIN: 'ROLE_ADMIN',
@@ -26,12 +27,13 @@ const routes: Routes = [
   {path: 'home', component: BuildingsComponent, canActivate: [AuthGuard]},
   {path: 'buildings', component: BuildingsComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN] } },
   {path: 'building/:id', component: BuildingComponent, canActivate: [AuthGuard]},
-  {path: 'locators', component: LocatorsComponent, canActivate: [AuthGuard]},
-  {path: 'locator/:id', component: LocatorComponent, canActivate: [AuthGuard]},
+  {path: 'locators', component: LocatorsComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN] }},
+  {path: 'locator/:id', component: LocatorComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN] }},
   {path: 'locator', component: LocatorComponent, canActivate: [AuthGuard]},
   {path: 'accessForbidden', component: AccessForbiddenComponent, canActivate: [AuthGuard]},
   {path: 'premises/:id', component: PremisesDetailsComponent, canActivate: [AuthGuard]},
   {path: 'measurements', component: MeasurementsComponent, canActivate: [AuthGuard]},
+  {path: 'userMeasurements', component: UserMeasurementsComponent, canActivate: [AuthGuard]},
   {path: 'measurements/:id', component: MeasurementsDetailsComponent, canActivate: [AuthGuard]},
   {path: 'bills', component: BillsComponent, canActivate: [AuthGuard]},
   {path: 'bills/:id', component: BillDetailsComponent, canActivate: [AuthGuard]},

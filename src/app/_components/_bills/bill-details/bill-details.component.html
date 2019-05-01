@@ -9,13 +9,22 @@
     </div>
     <div class="bill-state-info">
       <div class="state-block">
-        <span>Stan zapłaty: </span><span>{{bill.isPaid == true ? 'Zapłącony' : 'Niezapłacony'}}</span>
+        <span>Stan zapłaty: </span>
+        <span class="{{bill.isPaid == true ? 'status-ok' : 'status-not-ok'}}">
+        {{bill.isPaid == true ? 'Zapłącony' : 'Niezapłacony'}}
+      </span>
       </div>
       <div class="state-block">
-        <span>Stan akceptacji: </span><span>{{bill.isAccepted == true ? 'Zaakceptowany' : 'Niezaakceptowany'}}</span>
+        <span>Stan akceptacji: </span>
+        <span class="{{bill.isAccepted == true ? 'status-ok' : 'status-not-ok'}}">
+          {{bill.isAccepted == true ? 'Zaakceptowany' : 'Niezaakceptowany'}}
+        </span>
       </div>
       <div class="state-block">
-        <span>Stan rozpatrzenia odczytu: </span><span>{{!bill.isChecked ? 'Oczekujący na potwierdzenie' : 'Potwierdzony'}}</span>
+        <span>Stan rozpatrzenia odczytu: </span>
+        <span class="{{bill.isChecked == true ? 'status-ok' : 'status-not-ok'}}">
+          {{!bill.isChecked ? 'Oczekujący na potwierdzenie' : 'Potwierdzony'}}
+        </span>
       </div>
     </div>
   </header>

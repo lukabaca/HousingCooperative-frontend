@@ -24,6 +24,11 @@ export class BillService {
     return this.http.get<Bill[]>(endpoint);
   }
 
+  getUserBills(): Observable<Bill[]> {
+    const endpoint = this.apiUrl + "getUserBills";
+    return this.http.get<Bill[]>(endpoint);
+  }
+
   changeBillPaymentStatus(billId, billPaymentStatusRequest: BillPaymentStatusRequest): Observable<Response> {
     const endpoint = this.apiUrl + `changeBillPaymentStatus/${billId}`;
     return this.http.put<Response>(endpoint, billPaymentStatusRequest);
