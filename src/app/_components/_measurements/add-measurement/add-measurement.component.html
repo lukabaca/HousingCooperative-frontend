@@ -65,6 +65,26 @@
         <div *ngIf="heating.errors.required">Wymagane pole</div>
       </div>
     </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Miesiąc</mat-label>
+        <mat-select name="month" [(ngModel)]="measurement.month" required>
+          <mat-option *ngFor="let month of months" [value]="month">
+            {{month}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Rok</mat-label>
+        <mat-select name="year" [(ngModel)]="measurement.year" required>
+          <mat-option *ngFor="let year of years" [value]="year">
+            {{year}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     <button  mat-raised-button class="primary add-measurement-btn" type="submit">Dodaj odczyt</button>
   </form>
 </div>

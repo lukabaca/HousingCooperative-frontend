@@ -41,4 +41,9 @@ export class PremisesService {
     const endpoint = this.apiUrl + `deleteLocatorFromPremises/${premisesId}/${locatorId}`;
     return this.http.delete<any>(endpoint);
   }
+
+  getUserPremies(): Observable<Premise> {
+    const endpoint = this.apiUrl + `getUserPremises`;
+    return this.http.get<Premise>(endpoint);
+  }
 }

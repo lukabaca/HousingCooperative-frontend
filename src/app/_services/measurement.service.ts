@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Bill} from '../_models/bill';
 import {Measurement} from '../_models/measurement';
 import {StateAcceptedRequest} from '../_models/_requests/stateAcceptedRequest';
+import {Premise} from '../_models/premise';
 
 @Injectable({ providedIn: 'root' })
 export class MeasurementService {
@@ -43,4 +44,5 @@ export class MeasurementService {
     const endpoint = this.apiUrl + `changeMeasurementStatus/${measurementId}`;
     return this.http.put<Response>(endpoint, measurementStatusRequest);
   }
+
 }

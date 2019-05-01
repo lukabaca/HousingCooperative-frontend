@@ -6,6 +6,9 @@ import {UserInfo} from '../../../_models/userInfo';
 import {Role} from '../../../_models/role';
 import {ActivatedRoute} from '@angular/router';
 import {SnackBarGenerator} from '../../../_helpers/snackBarGenerator';
+import {AuthenticationService} from '../../../_services/authentication.service';
+import {Premise} from '../../../_models/premise';
+import {PremisesService} from '../../../_services/premises.service';
 
 @Component({
   selector: 'app-add-measurement',
@@ -15,14 +18,19 @@ import {SnackBarGenerator} from '../../../_helpers/snackBarGenerator';
 export class AddMeasurementComponent implements OnInit {
   measurement: Measurement;
   isEditingMeasurement: boolean;
-
+  months: number[] = [];
+  years: number[] = [];
   constructor(private measurementService: MeasurementService,
+              private premisesService: PremisesService,
               private route: ActivatedRoute,
-              private snackBar: SnackBarGenerator) {
+              private snackBar: SnackBarGenerator,
+              private authenticationService: AuthenticationService) {
     this.initForm();
   }
 
   ngOnInit() {
+    this.initMonths();
+    this.initYears();
   }
 
   initForm() {
@@ -42,22 +50,48 @@ export class AddMeasurementComponent implements OnInit {
 
   onSubmit(measurementForm) {
     if (this.isEditingMeasurement) {
-      this.measurementService.updateMeasurement(this.measurement).subscribe(res => {
-        if (res) {
-          this.snackBar.openSnackBar('Poprawnie zaktualizowano odczyt', true);
+      this.authenticationService.getUserData().subscribe((userData: User) => {
+        if (!userData) {
+          return;
         }
-      },  error => {
-        this.snackBar.openSnackBar('Wystąpił błąd', false);
+        this.premisesService.getUserPremies().subscribe((premise: Premise) => {
+          const userPremise = premise;
+          this.measurement.premisesId = userPremise.id;
+          this.measurementService.updateMeasurement(this.measurement).subscribe(res => {
+            if (res) {
+              this.snackBar.openSnackBar('Poprawnie zaktualizowano odczyt', true);
+            }
+          },  error => {
+            this.snackBar.openSnackBar('Wystąpił błąd', false);
+          });
+        });
       });
     } else {
-      this.measurementService.createMeasurement(this.measurement).subscribe(res => {
-        if (res) {
-          this.snackBar.openSnackBar('Poprawnie dodano odczyt', true);
-          measurementForm.resetForm();
-        }
-      }, error => {
-        this.snackBar.openSnackBar('Wystąpił błąd', false);
+      this.premisesService.getUserPremies().subscribe((premise: Premise) => {
+        const userPremise = premise;
+        this.measurement.premisesId = userPremise.id;
+        this.measurementService.createMeasurement(this.measurement).subscribe(res => {
+          if (res) {
+            this.snackBar.openSnackBar('Poprawnie dodano odczyt', true);
+            measurementForm.resetForm();
+          }
+        }, error => {
+          this.snackBar.openSnackBar('Wystąpił błąd', false);
+        });
       });
     }
+  }
+
+  initMonths() {
+    for (let i = 1; i <= 12 ; i++) {
+      this.months.push(i);
+    }
+  }
+
+  initYears() {
+    const currentYear = new Date().getFullYear();
+    const pastYear = currentYear - 1;
+    this.years.push(currentYear);
+    this.years.push(pastYear);
   }
 }

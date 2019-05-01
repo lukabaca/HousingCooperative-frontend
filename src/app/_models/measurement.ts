@@ -11,4 +11,5 @@ export class Measurement {
   month: number;
   year: number;
   premise: Premise;
+  premisesId?: number;
 }
