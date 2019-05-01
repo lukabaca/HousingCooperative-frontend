@@ -30,6 +30,7 @@ import {TranslateService} from './_services/translate.service';
 import { TranslatePipe } from './_pipes/translate.pipe';
 import { PremisesDetailsComponent } from './_components/_premises/premises-details/premises-details.component';
 import { AddLocatorToPremiseDialogComponent } from './_components/_dialogs/add-locator-to-premise-dialog/add-locator-to-premise-dialog.component';
+import {BillService} from './_services/bill.service';
 
 export function setupTranslateFactory(
   service: TranslateService) {
@@ -73,6 +74,7 @@ export function setupTranslateFactory(
     AuthenticationService,
     HousingCooperativeService,
     PremisesService,
+    BillService,
     SnackBarGenerator,
     TranslateService, {
       provide: APP_INITIALIZER,
@@ -86,8 +88,6 @@ export function setupTranslateFactory(
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} },
     { provide: LOCALE_ID, useValue: 'pl' }
-    // {provide: TRANSLATIONS, useValue: translations},
-    // {provide: TRANSLATIONS_FORMAT, useValue: 'xlf'},
   ],
   bootstrap: [AppComponent]
 })
