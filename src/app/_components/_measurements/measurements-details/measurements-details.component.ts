@@ -30,7 +30,6 @@ export class MeasurementsDetailsComponent implements OnInit {
     this.measurementsService.getMeasurement(this.measurementId).subscribe((measurement: Measurement) => {
       if (measurement) {
         this.measurement = measurement;
-        console.log('measurement: ', this.measurement);
       }
     });
   }

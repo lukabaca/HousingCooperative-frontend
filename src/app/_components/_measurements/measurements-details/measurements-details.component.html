@@ -3,7 +3,7 @@
     <div class="header-area">
       <h3 class="header-title">Odczyt za {{measurement.month}}.{{measurement.year}} dla lokalu nr: {{measurement.premise.number}}}</h3>
       <div class="buttons-area">
-        <button mat-raised-button class="primary accept-measurement" (click)="acceptMeasurement()" [disabled]="measurement.accepted">Zatwierdź odczyt</button>
+        <button mat-raised-button class="primary accept-bill" (click)="acceptMeasurement()" [disabled]="measurement.accepted">Zatwierdź odczyt</button>
         <button mat-raised-button color="warn" (click)="denyMeasurement()">Odrzuć odczyt</button>
       </div>
     </div>

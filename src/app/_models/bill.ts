@@ -1,3 +1,5 @@
+import {Measurement} from './measurement';
+
 export class Bill {
   id: number;
   electricityCost: number;
@@ -7,4 +9,5 @@ export class Bill {
   isPaid: boolean;
   isChecked: boolean;
   isAccepted: boolean;
+  measurement: Measurement;
 }
