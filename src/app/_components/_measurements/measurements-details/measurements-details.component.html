@@ -1,0 +1,49 @@
+<div class="component-content" *ngIf="measurement">
+  <header>
+    <div class="header-area">
+      <h3 class="header-title">Odczyt za {{measurement.month}}.{{measurement.year}} dla lokalu nr: {{measurement.premise.number}}</h3>
+      <div class="buttons-area" *ngIf="authGuard.hasRole(['ROLE_ADMIN'])">
+        <button mat-raised-button class="primary accept-measurement" (click)="acceptMeasurement()" [disabled]="measurement.accepted">Zatwierdź odczyt</button>
+        <button mat-raised-button color="warn" (click)="denyMeasurement()">Odrzuć odczyt</button>
+      </div>
+      <div class="user-editing-measurement" *ngIf="authGuard.hasRole(['ROLE_USER'])">
+        <button mat-raised-button class="primary" [disabled]="measurement.accepted" (click)="editMeasurement()">Edytuj odczyt</button>
+      </div>
+    </div>
+    <div class="measurement-state-info">
+      <div class="state-block">
+        <span>Stan akceptacji: </span>
+        <span class="{{measurement.accepted == true ? 'status-ok' : 'status-not-ok'}}">
+          {{measurement.accepted == true ? 'Zaakceptowany' : 'Niezaakceptowany'}}
+        </span>
+      </div>
+      <div class="state-block">
+        <span>Stan rozpatrzenia odczytu: </span>
+        <span class="{{measurement.checked == true ? 'status-ok' : 'status-not-ok'}}">
+          {{!measurement.checked ? 'Oczekujący na potwierdzenie' : 'Potwierdzony'}}
+        </span>
+      </div>
+    </div>
+  </header>
+  <div class="measurement-details-area">
+    <h5>Szczegóły odczytu</h5>
+    <mat-list>
+      <mat-list-item>
+        <span>Zużycie prądu</span><span class="measurement-details-element">{{measurement.electricity}}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <span>Zużycie ciepłej wody</span><span class="measurement-details-element">{{measurement.hotWater}}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <span>Zużycie zimnej wody</span><span class="measurement-details-element">{{measurement.coldWater}}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <span>Zużycie ogrzewania</span><span class="measurement-details-element">{{measurement.heating}}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+</div>

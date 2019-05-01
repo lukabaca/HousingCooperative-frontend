@@ -1,0 +1,51 @@
+<div class="component-content" *ngIf="bill">
+  <header>
+    <div class="header-area">
+      <h3 class="header-title">Rachunek dla lokalu nr: {{bill.measurement.premise.number}}</h3>
+      <div class="buttons-area">
+        <button mat-raised-button class="primary accept-bill" (click)="acceptBill()" [disabled]="bill.isAccepted">Zatwierdź odczyt</button>
+        <button mat-raised-button color="warn" (click)="denyBill()">Odrzuć odczyt</button>
+      </div>
+    </div>
+    <div class="bill-state-info">
+      <div class="state-block">
+        <span>Stan zapłaty: </span>
+        <span class="{{bill.isPaid == true ? 'status-ok' : 'status-not-ok'}}">
+        {{bill.isPaid == true ? 'Zapłącony' : 'Niezapłacony'}}
+      </span>
+      </div>
+      <div class="state-block">
+        <span>Stan akceptacji: </span>
+        <span class="{{bill.isAccepted == true ? 'status-ok' : 'status-not-ok'}}">
+          {{bill.isAccepted == true ? 'Zaakceptowany' : 'Niezaakceptowany'}}
+        </span>
+      </div>
+      <div class="state-block">
+        <span>Stan rozpatrzenia odczytu: </span>
+        <span class="{{bill.isChecked == true ? 'status-ok' : 'status-not-ok'}}">
+          {{!bill.isChecked ? 'Oczekujący na potwierdzenie' : 'Potwierdzony'}}
+        </span>
+      </div>
+    </div>
+  </header>
+  <div class="bill-details-area">
+    <h5>Szczegóły odczytu</h5>
+    <mat-list>
+      <mat-list-item>
+        <span>Koszt prądu: </span><span class="bill-element">{{bill.electricityCost}} zł</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <span>Koszt ciepłej wody: </span><span class="bill-element">{{bill.hotWaterCost}} zł</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <span>Koszt zimnej wody: </span><span class="bill-element">{{bill.coldWaterCost}} zł</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <span>Koszt ogrzewania: </span><span class="bill-element">{{bill.heatingCost}} zł</span>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

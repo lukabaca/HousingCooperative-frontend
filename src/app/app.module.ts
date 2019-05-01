@@ -30,6 +30,14 @@ import {TranslateService} from './_services/translate.service';
 import { TranslatePipe } from './_pipes/translate.pipe';
 import { PremisesDetailsComponent } from './_components/_premises/premises-details/premises-details.component';
 import { AddLocatorToPremiseDialogComponent } from './_components/_dialogs/add-locator-to-premise-dialog/add-locator-to-premise-dialog.component';
+import {BillService} from './_services/bill.service';
+import { MeasurementsComponent } from './_components/_measurements/measurements/measurements.component';
+import { MeasurementsDetailsComponent } from './_components/_measurements/measurements-details/measurements-details.component';
+import { BillsComponent } from './_components/_bills/bills/bills.component';
+import { BillDetailsComponent } from './_components/_bills/bill-details/bill-details.component';
+import {MeasurementService} from './_services/measurement.service';
+import { UserMeasurementsComponent } from './_components/_measurements/user-measurements/user-measurements.component';
+import { AddMeasurementComponent } from './_components/_measurements/add-measurement/add-measurement.component';
 
 export function setupTranslateFactory(
   service: TranslateService) {
@@ -55,6 +63,12 @@ export function setupTranslateFactory(
     TranslatePipe,
     PremisesDetailsComponent,
     AddLocatorToPremiseDialogComponent,
+    MeasurementsComponent,
+    MeasurementsDetailsComponent,
+    BillsComponent,
+    BillDetailsComponent,
+    UserMeasurementsComponent,
+    AddMeasurementComponent,
   ],
   entryComponents: [
     AddBuildingDialogComponent,
@@ -73,6 +87,8 @@ export function setupTranslateFactory(
     AuthenticationService,
     HousingCooperativeService,
     PremisesService,
+    BillService,
+    MeasurementService,
     SnackBarGenerator,
     TranslateService, {
       provide: APP_INITIALIZER,
@@ -86,8 +102,6 @@ export function setupTranslateFactory(
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} },
     { provide: LOCALE_ID, useValue: 'pl' }
-    // {provide: TRANSLATIONS, useValue: translations},
-    // {provide: TRANSLATIONS_FORMAT, useValue: 'xlf'},
   ],
   bootstrap: [AppComponent]
 })

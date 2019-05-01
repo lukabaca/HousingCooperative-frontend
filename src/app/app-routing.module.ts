@@ -9,6 +9,12 @@ import {BuildingComponent} from "./_components/_building/building/building.compo
 import {LocatorComponent} from './_components/_locators/locator/locator.component';
 import {AccessForbiddenComponent} from './_components/common/_errors/access-forbidden/access-forbidden.component';
 import {PremisesDetailsComponent} from './_components/_premises/premises-details/premises-details.component';
+import {MeasurementsComponent} from './_components/_measurements/measurements/measurements.component';
+import {MeasurementsDetailsComponent} from './_components/_measurements/measurements-details/measurements-details.component';
+import {BillsComponent} from './_components/_bills/bills/bills.component';
+import {BillDetailsComponent} from './_components/_bills/bill-details/bill-details.component';
+import {UserMeasurementsComponent} from './_components/_measurements/user-measurements/user-measurements.component';
+import {AddMeasurementComponent} from './_components/_measurements/add-measurement/add-measurement.component';
 
 const Roles = {
   ADMIN: 'ROLE_ADMIN',
@@ -22,11 +28,18 @@ const routes: Routes = [
   {path: 'home', component: BuildingsComponent, canActivate: [AuthGuard]},
   {path: 'buildings', component: BuildingsComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN] } },
   {path: 'building/:id', component: BuildingComponent, canActivate: [AuthGuard]},
-  {path: 'locators', component: LocatorsComponent, canActivate: [AuthGuard]},
-  {path: 'locator/:id', component: LocatorComponent, canActivate: [AuthGuard]},
+  {path: 'locators', component: LocatorsComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN] }},
+  {path: 'locator/:id', component: LocatorComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN] }},
   {path: 'locator', component: LocatorComponent, canActivate: [AuthGuard]},
   {path: 'accessForbidden', component: AccessForbiddenComponent, canActivate: [AuthGuard]},
   {path: 'premises/:id', component: PremisesDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'measurements', component: MeasurementsComponent, canActivate: [AuthGuard]},
+  {path: 'addMeasurement', component: AddMeasurementComponent, canActivate: [AuthGuard]},
+  {path: 'addMeasurement/:id', component: AddMeasurementComponent, canActivate: [AuthGuard]},
+  {path: 'userMeasurements', component: UserMeasurementsComponent, canActivate: [AuthGuard]},
+  {path: 'measurements/:id', component: MeasurementsDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'bills', component: BillsComponent, canActivate: [AuthGuard]},
+  {path: 'bills/:id', component: BillDetailsComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
