@@ -1,0 +1,31 @@
+<div class="component-content">
+  <app-loading *ngIf="isLoading"></app-loading>
+  <div class="content-container" [hidden]="isLoading">
+    <header>
+      <div class="header-area">
+        <h3 class="header-title">Odczyty</h3>
+      </div>
+    </header>
+    <div class="list-content">
+      <table #table mat-table [dataSource]="dataSource" *ngIf="measurements && measurements.length > 0" matSort>
+        <div *ngFor="let displayColumn of displayedColumns, let i = index">
+          <ng-container matColumnDef="{{displayColumn.key}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{displayColumn.name}}</th>
+            <td mat-cell *matCellDef="let element">
+              {{element[displayColumn.key]}}
+            </td>
+          </ng-container>
+        </div>
+
+        <tr mat-header-row *matHeaderRowDef="columnKeys"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnKeys; let i = index"></tr>
+      </table>
+
+      <mat-paginator [length]="length"
+                     [pageSize]="pageSize"
+                     [pageSizeOptions]="pageSizeOptions"
+                     (page)="pageEvent = $event">
+      </mat-paginator>
+    </div>
+  </div>
+</div>
