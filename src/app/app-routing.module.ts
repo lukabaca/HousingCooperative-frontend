@@ -11,6 +11,8 @@ import {AccessForbiddenComponent} from './_components/common/_errors/access-forb
 import {PremisesDetailsComponent} from './_components/_premises/premises-details/premises-details.component';
 import {MeasurementsComponent} from './_components/_measurements/measurements/measurements.component';
 import {MeasurementsDetailsComponent} from './_components/_measurements/measurements-details/measurements-details.component';
+import {BillsComponent} from './_components/_bills/bills/bills.component';
+import {BillDetailsComponent} from './_components/_bills/bill-details/bill-details.component';
 
 const Roles = {
   ADMIN: 'ROLE_ADMIN',
@@ -31,6 +33,8 @@ const routes: Routes = [
   {path: 'premises/:id', component: PremisesDetailsComponent, canActivate: [AuthGuard]},
   {path: 'measurements', component: MeasurementsComponent, canActivate: [AuthGuard]},
   {path: 'measurements/:id', component: MeasurementsDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'bills', component: BillsComponent, canActivate: [AuthGuard]},
+  {path: 'bills/:id', component: BillDetailsComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
