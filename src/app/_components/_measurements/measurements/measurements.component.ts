@@ -4,6 +4,7 @@ import {Building} from '../../../_models/building';
 import {Measurement} from '../../../_models/measurement';
 import {DataTableConfigurator} from '../../../_helpers/dataTableConfigurator';
 import {MatTableDataSource} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-measurements',
@@ -12,23 +13,10 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class MeasurementsComponent extends DataTableConfigurator implements OnInit {
   measurements: Measurement[];
-  columnKeys: string[] = ['id', 'month', 'year'];
+  columnKeys: string[] = ['id', 'month', 'year', 'premise.number', 'accepted', 'checked'];
   isLoading: boolean;
-  displayedColumns = [
-    {
-      "key": "id",
-      "name": "id"
-    },
-    {
-      "key": "month",
-      "name": "numer"
-    },
-    {
-      "key": "year",
-      "name": "adres"
-    },
-  ];
-  constructor(private measurementsService: MeasurementService) {
+  constructor(private measurementsService: MeasurementService,
+              private router: Router) {
     super();
     this.isLoading = true;
   }
@@ -45,5 +33,12 @@ export class MeasurementsComponent extends DataTableConfigurator implements OnIn
       this.dataSource.sort = this.sort;
       this.isLoading = false;
     });
+  }
+
+  measurementsDetails(element, event) {
+    if (!element) {
+      return;
+    }
+    this.router.navigate(['measurements', element.id]);
   }
 }

@@ -10,6 +10,7 @@ import {LocatorComponent} from './_components/_locators/locator/locator.componen
 import {AccessForbiddenComponent} from './_components/common/_errors/access-forbidden/access-forbidden.component';
 import {PremisesDetailsComponent} from './_components/_premises/premises-details/premises-details.component';
 import {MeasurementsComponent} from './_components/_measurements/measurements/measurements.component';
+import {MeasurementsDetailsComponent} from './_components/_measurements/measurements-details/measurements-details.component';
 
 const Roles = {
   ADMIN: 'ROLE_ADMIN',
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'accessForbidden', component: AccessForbiddenComponent, canActivate: [AuthGuard]},
   {path: 'premises/:id', component: PremisesDetailsComponent, canActivate: [AuthGuard]},
   {path: 'measurements', component: MeasurementsComponent, canActivate: [AuthGuard]},
+  {path: 'measurements/:id', component: MeasurementsDetailsComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

@@ -1,0 +1,16 @@
+@import "~src/assets/styles/variables.scss";
+.measurement-not-accepted {
+  color: $errorColor;
+}
+
+.measurement-accepted {
+  color: $successColor;
+}
+
+.account-active-icon {
+  color: $successColor;
+}
+
+.measurement-waiting-for-confimartion {
+  color: #FFA500;
+}

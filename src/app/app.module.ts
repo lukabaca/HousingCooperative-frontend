@@ -32,6 +32,7 @@ import { PremisesDetailsComponent } from './_components/_premises/premises-detai
 import { AddLocatorToPremiseDialogComponent } from './_components/_dialogs/add-locator-to-premise-dialog/add-locator-to-premise-dialog.component';
 import {BillService} from './_services/bill.service';
 import { MeasurementsComponent } from './_components/_measurements/measurements/measurements.component';
+import { MeasurementsDetailsComponent } from './_components/_measurements/measurements-details/measurements-details.component';
 
 export function setupTranslateFactory(
   service: TranslateService) {
@@ -58,6 +59,7 @@ export function setupTranslateFactory(
     PremisesDetailsComponent,
     AddLocatorToPremiseDialogComponent,
     MeasurementsComponent,
+    MeasurementsDetailsComponent,
   ],
   entryComponents: [
     AddBuildingDialogComponent,
