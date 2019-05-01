@@ -1,7 +1,7 @@
 {
   "sign-out-title": "Wyloguj się",
   "side-nav-building": "Budynki",
-  "side-nav-premises": "Lokale",
+  "side-nav-premises": "Lokatorzy",
   "side-nav-bills": "Rachunki",
   "side-nav-measurements": "Odczyty",
   "top-nav-logo": "Spółdzielnia",
@@ -29,5 +29,7 @@
   "dialog-edit-premises-title": "Edytuj lokal",
   "dialog-add-premises-number": "Numer",
   "dialog-add-premises-space": "Powierzechnia",
-  "dialog-add-premises-roomCount": "Liczba pokoi"
+  "dialog-add-premises-roomCount": "Liczba pokoi",
+  "premises-details-titleHeader": "Mieszkanie",
+  "premises-details-add-person": "Dodaj lokatora"
 }

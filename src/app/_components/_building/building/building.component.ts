@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 import {HousingCooperativeService} from "../../../_services/housingCooperative.service";
 import {Building} from "../../../_models/building";
 import {DataTableConfigurator} from "../../../_helpers/dataTableConfigurator";
@@ -49,7 +49,8 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
   constructor(private route: ActivatedRoute,
               private housingCooperativeService: HousingCooperativeService,
               private premisesService: PremisesService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private router: Router,) {
     super();
     this.isLoading = true;
     if (this.route.snapshot.params.id) {
@@ -123,5 +124,12 @@ export class BuildingComponent extends DataTableConfigurator implements OnInit {
         });
       }
     });
+  }
+
+  premisesDetails(row) {
+    if (row) {
+      const premisesId = row.id;
+      this.router.navigate(['premises', premisesId]);
+    }
   }
 }

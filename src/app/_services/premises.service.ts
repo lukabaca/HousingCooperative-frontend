@@ -12,6 +12,11 @@ export class PremisesService {
 
   }
 
+  getPremise(premiseId): Observable<Premise> {
+    const endpoint = this.apiUrl + 'premise/{id}?id=' + premiseId;
+    return this.http.get<Premise>(endpoint);
+  }
+
   addPremise(premise: Premise): Observable<Response> {
     const endpoint = this.apiUrl + 'premise';
     return this.http.post<Response>(endpoint, premise);
@@ -24,6 +29,16 @@ export class PremisesService {
 
   deletePremise(premise: Premise): Observable<any> {
     const endpoint = this.apiUrl + 'premise/{id}?id=' + premise.id;
+    return this.http.delete<any>(endpoint);
+  }
+
+  addLocatorToPremises(premisesId, locatorId): Observable<any> {
+    const endpoint = this.apiUrl + `addLocatorToPremises/${premisesId}/${locatorId}`;
+    return this.http.put<any>(endpoint, null);
+  }
+
+  deleteLocatorFromPremise(premisesId, locatorId): Observable<any> {
+    const endpoint = this.apiUrl + `deleteLocatorFromPremises/${premisesId}/${locatorId}`;
     return this.http.delete<any>(endpoint);
   }
 }

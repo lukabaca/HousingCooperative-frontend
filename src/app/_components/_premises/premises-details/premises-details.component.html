@@ -1,0 +1,36 @@
+<header>
+  <div class="header-area" *ngIf="premise">
+    <h3 class="header-title">{{ 'premises-details-titleHeader' | translate}} #{{premise.number}}</h3>
+    <button mat-raised-button class="primary" (click)="addPerson()">{{ 'premises-details-add-person' | translate}}</button>
+  </div>
+</header>
+<div class="premise-details-area" *ngIf="premise">
+  <div class="premise-info">
+    <div class="info-element  w-33">
+      <span class="info-element-title">Numer:</span><span class="element">{{premise.number}}</span>
+    </div>
+    <div class="info-element w-33">
+      <span class="info-element-title">Powierzchnia:</span><span class="element">{{premise.space}}</span>
+    </div>
+    <div class="info-element w-33">
+      <span class="info-element-title">Liczba pokoi:</span><span class="element">{{premise.roomCount}}</span>
+    </div>
+  </div>
+  <h4>Lokatorzy:</h4>
+  <div class="locators-list">
+    <mat-list *ngIf="premise && premise.appUser.length > 0">
+      <div *ngFor="let locator of premise.appUser">
+        <mat-list-item>
+          {{locator.userInfo.name}} {{locator.userInfo.surname}}
+          <span class="delete-locator" (click)="deleteLocator(locator.id)">
+            <i class="material-icons">
+                      delete
+            </i>
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+    <span *ngIf="premise && premise.appUser.length <= 0">Brak przypisanych lokatorów</span>
+  </div>
+</div>
