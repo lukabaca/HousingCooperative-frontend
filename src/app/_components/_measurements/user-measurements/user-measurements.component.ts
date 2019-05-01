@@ -42,6 +42,6 @@ export class UserMeasurementsComponent extends DataTableConfigurator implements 
   }
 
   addMeasurement() {
-
+    this.router.navigate(['addMeasurement']);
   }
 }

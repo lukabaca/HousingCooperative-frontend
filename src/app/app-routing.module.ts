@@ -14,6 +14,7 @@ import {MeasurementsDetailsComponent} from './_components/_measurements/measurem
 import {BillsComponent} from './_components/_bills/bills/bills.component';
 import {BillDetailsComponent} from './_components/_bills/bill-details/bill-details.component';
 import {UserMeasurementsComponent} from './_components/_measurements/user-measurements/user-measurements.component';
+import {AddMeasurementComponent} from './_components/_measurements/add-measurement/add-measurement.component';
 
 const Roles = {
   ADMIN: 'ROLE_ADMIN',
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'accessForbidden', component: AccessForbiddenComponent, canActivate: [AuthGuard]},
   {path: 'premises/:id', component: PremisesDetailsComponent, canActivate: [AuthGuard]},
   {path: 'measurements', component: MeasurementsComponent, canActivate: [AuthGuard]},
+  {path: 'addMeasurement', component: AddMeasurementComponent, canActivate: [AuthGuard]},
   {path: 'userMeasurements', component: UserMeasurementsComponent, canActivate: [AuthGuard]},
   {path: 'measurements/:id', component: MeasurementsDetailsComponent, canActivate: [AuthGuard]},
   {path: 'bills', component: BillsComponent, canActivate: [AuthGuard]},

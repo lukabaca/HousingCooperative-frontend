@@ -37,6 +37,7 @@ import { BillsComponent } from './_components/_bills/bills/bills.component';
 import { BillDetailsComponent } from './_components/_bills/bill-details/bill-details.component';
 import {MeasurementService} from './_services/measurement.service';
 import { UserMeasurementsComponent } from './_components/_measurements/user-measurements/user-measurements.component';
+import { AddMeasurementComponent } from './_components/_measurements/add-measurement/add-measurement.component';
 
 export function setupTranslateFactory(
   service: TranslateService) {
@@ -67,6 +68,7 @@ export function setupTranslateFactory(
     BillsComponent,
     BillDetailsComponent,
     UserMeasurementsComponent,
+    AddMeasurementComponent,
   ],
   entryComponents: [
     AddBuildingDialogComponent,

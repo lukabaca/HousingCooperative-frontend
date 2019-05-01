@@ -4,7 +4,7 @@
     <header>
       <div class="header-area">
         <h3 class="header-title">Odczyty</h3>
-        <button mat-raised-button class="primary" (click)="addMeasurement">Dodaj odczyt</button>
+        <button mat-raised-button class="primary" (click)="addMeasurement()">Dodaj odczyt</button>
       </div>
     </header>
     <div class="list-content" [hidden]="!(measurements && measurements.length > 0)">
