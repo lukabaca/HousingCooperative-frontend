@@ -30,8 +30,13 @@ export class BillService {
   }
 
   getUserBills(): Observable<Bill[]> {
-    const endpoint = this.apiUrl + "getUserBills";
+    const endpoint = this.apiUrl + 'getUserBills';
     return this.http.get<Bill[]>(endpoint);
+  }
+
+  getBillPdf(billId) {
+    const endpoint = this.apiUrl + `billPdf/${billId}`;
+    return this.http.get(endpoint, {responseType: 'blob'});
   }
 
   changeBillPaymentStatus(billId, billPaymentStatusRequest: BillPaymentStatusRequest): Observable<Response> {

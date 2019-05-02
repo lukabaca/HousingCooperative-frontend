@@ -13,7 +13,7 @@ import {Bill} from '../../../_models/bill';
 })
 export class BillsComponent extends DataTableConfigurator implements OnInit {
   bills: Bill[];
-  columnKeys: string[] = ['id', 'measurement.month', 'measurement.year', 'measurement.premise.number', 'accepted', 'checked', 'paid'];
+  columnKeys: string[] = ['id', 'measurement.month', 'measurement.year', 'measurement.premise.number', 'accepted', 'checked', 'paid', 'pdf'];
   isLoading: boolean;
   constructor(private billService: BillService,
               private router: Router) {
@@ -40,5 +40,23 @@ export class BillsComponent extends DataTableConfigurator implements OnInit {
       return;
     }
     this.router.navigate(['bills', element.id]);
+  }
+
+  test(element, event) {
+    if (!element) {
+      return;
+    }
+    event.stopPropagation();
+    this.billService.getBillPdf(element.id).subscribe(res => {
+      console.log(res);
+      const blob = new Blob([res], {type: 'application/pdf'});
+      const data = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = data;
+      link.download = 'bill.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
   }
 }
