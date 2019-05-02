@@ -70,12 +70,17 @@ export class AddMeasurementComponent implements OnInit {
       this.premisesService.getUserPremies().subscribe((premise: Premise) => {
         const userPremise = premise;
         this.measurement.premisesId = userPremise.id;
+        console.log(this.measurement);
         this.measurementService.createMeasurement(this.measurement).subscribe(res => {
           if (res) {
             this.snackBar.openSnackBar('Poprawnie dodano odczyt', true);
             measurementForm.resetForm();
           }
         }, error => {
+          console.log(error);
+          // if (error === '409') {
+          //   this.snackBar.openSnackBar('Odczyt za ten czas został już złożony', false);
+          // }
           this.snackBar.openSnackBar('Wystąpił błąd', false);
         });
       });

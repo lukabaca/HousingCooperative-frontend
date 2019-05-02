@@ -13,7 +13,7 @@ import {Bill} from '../../../_models/bill';
 })
 export class BillsComponent extends DataTableConfigurator implements OnInit {
   bills: Bill[];
-  columnKeys: string[] = ['id', 'electricityCost', 'hotWaterCost', 'coldWaterCost', 'heatingCost', 'accepted', 'checked', 'paid'];
+  columnKeys: string[] = ['id', 'measurement.month', 'measurement.year', 'measurement.premise.number', 'accepted', 'checked', 'paid'];
   isLoading: boolean;
   constructor(private billService: BillService,
               private router: Router) {

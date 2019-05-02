@@ -14,24 +14,19 @@
           <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.id}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="electricityCost">
-          <th mat-header-cell *matHeaderCellDef>Prąd</th>
-          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.electricityCost}} zł</td>
+        <ng-container matColumnDef="measurement.month">
+          <th mat-header-cell *matHeaderCellDef>Miesiąc</th>
+          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.measurement.month}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="hotWaterCost">
-          <th mat-header-cell *matHeaderCellDef>Ciepła woda</th>
-          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.hotWaterCost}} zł</td>
+        <ng-container matColumnDef="measurement.year">
+          <th mat-header-cell *matHeaderCellDef>Rok</th>
+          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.measurement.year}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="coldWaterCost">
-          <th mat-header-cell *matHeaderCellDef>Zimna woda</th>
-          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.coldWaterCost}} zł</td>
-        </ng-container>
-
-        <ng-container matColumnDef="heatingCost">
-          <th mat-header-cell *matHeaderCellDef>Ogrzewanie</th>
-          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.heatingCost}} zł</td>
+        <ng-container matColumnDef="measurement.premise.number">
+          <th mat-header-cell *matHeaderCellDef>Lokal numer</th>
+          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.measurement.premise.number}}</td>
         </ng-container>
 
         <ng-container matColumnDef="accepted">
