@@ -2,31 +2,32 @@
   <header>
     <div class="header-area">
       <h3 class="header-title">Rachunek dla lokalu nr: {{bill.measurement.premise.number}}</h3>
-      <div class="buttons-area" *ngIf="authGuard.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER'])">
+      <div class="buttons-area" *ngIf="authGuard.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER']) && !bill.paid">
         <button mat-raised-button class="primary accept-bill" (click)="acceptBill()" [disabled]="bill.isAccepted">Zatwierdź odczyt</button>
         <button mat-raised-button color="warn" (click)="denyBill()">Odrzuć odczyt</button>
       </div>
-      <div class="pay-bill-area" *ngIf="authGuard.hasRole(['ROLE_USER'])">
-        <button mat-raised-button class="primary" (click)="payBill()">Zapłać</button>
+      <div class="pay-bill-area" *ngIf="authGuard.hasRole(['ROLE_USER']) && !bill.paid">
+        <button mat-raised-button class="primary" (click)="payBill()" [disabled]="!bill.accepted">Zapłać</button>
+        <p class="bill-paymennt-requirements-info" *ngIf="!bill.accepted">Aby zapłacić za rachunek musi on być zaakceptowany</p>
       </div>
     </div>
     <div class="bill-state-info">
       <div class="state-block">
         <span>Stan zapłaty: </span>
-        <span class="{{bill.isPaid == true ? 'status-ok' : 'status-not-ok'}}">
-        {{bill.isPaid == true ? 'Zapłącony' : 'Niezapłacony'}}
+        <span class="{{bill.paid == true ? 'status-ok' : 'status-not-ok'}}">
+        {{bill.paid == true ? 'Zapłącony' : 'Niezapłacony'}}
       </span>
       </div>
       <div class="state-block">
         <span>Stan akceptacji: </span>
-        <span class="{{bill.isAccepted == true ? 'status-ok' : 'status-not-ok'}}">
-          {{bill.isAccepted == true ? 'Zaakceptowany' : 'Niezaakceptowany'}}
+        <span class="{{bill.accepted == true ? 'status-ok' : 'status-not-ok'}}">
+          {{bill.accepted == true ? 'Zaakceptowany' : 'Niezaakceptowany'}}
         </span>
       </div>
       <div class="state-block">
         <span>Stan rozpatrzenia odczytu: </span>
-        <span class="{{bill.isChecked == true ? 'status-ok' : 'status-not-ok'}}">
-          {{!bill.isChecked ? 'Oczekujący na potwierdzenie' : 'Potwierdzony'}}
+        <span class="{{bill.checked == true ? 'status-ok' : 'status-not-ok'}}">
+          {{!bill.checked ? 'Oczekujący na potwierdzenie' : 'Potwierdzony'}}
         </span>
       </div>
     </div>
