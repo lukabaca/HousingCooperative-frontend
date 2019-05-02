@@ -1,5 +1,6 @@
 <div class="top-nav">
-  <span class="logo" routerLink="/home">{{ 'top-nav-logo' | translate}}</span>
+  <span class="logo" routerLink="/home" *ngIf="authGuard.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER'])">{{ 'top-nav-logo' | translate}}</span>
+  <span class="logo" routerLink="/userMeasurements" *ngIf="authGuard.hasRole(['ROLE_USER'])">{{ 'top-nav-logo' | translate}}</span>
   <div class="user-area">
     <div class="translation-area">
       <button mat-flat-button class="md-primary" (click)="setLang('en')">EN</button>

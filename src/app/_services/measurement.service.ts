@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Bill} from '../_models/bill';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Measurement} from '../_models/measurement';
 import {StateAcceptedRequest} from '../_models/_requests/stateAcceptedRequest';
-import {Premise} from '../_models/premise';
+import {Observable, throwError} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class MeasurementService {
@@ -32,7 +31,14 @@ export class MeasurementService {
 
   createMeasurement(measurement: Measurement): Observable<Response> {
     const endpoint = this.apiUrl + 'measurement';
-    return this.http.post<Response>(endpoint, measurement);
+    return this.http.post<Response>(endpoint, measurement).pipe(
+      catchError((err: any) => {
+        if (err && err instanceof HttpErrorResponse) {
+          console.log('hhtp erorr:', err.status);
+        }
+        console.log('error status: ', err);
+        return throwError('409');
+      }));
   }
 
   updateMeasurement(measurement: Measurement): Observable<Response> {

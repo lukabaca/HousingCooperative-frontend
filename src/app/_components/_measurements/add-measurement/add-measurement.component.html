@@ -1,6 +1,7 @@
 <header>
   <div class="header-area">
-    <h3 class="header-title">Dodaj odczyt</h3>
+    <h3 class="header-title" *ngIf="!isEditingMeasurement">Dodaj odczyt</h3>
+    <h3 class="header-title" *ngIf="isEditingMeasurement">Edytuj odczyt</h3>
   </div>
 </header>
 <div class="new-measurement-area w-33">
@@ -13,8 +14,7 @@
                matInput
                [(ngModel)]="measurement.electricity"
                name="electricity"
-               #electricity="ngModel"
-               required>
+               #electricity="ngModel">
       </mat-form-field>
       <div *ngIf="measurementForm.submitted && electricity.invalid" class="invalid-feedback">
         <div *ngIf="electricity.errors.required">Wymagane pole</div>
@@ -29,7 +29,7 @@
                [(ngModel)]="measurement.hotWater"
                name="hotWater"
                #hotWater="ngModel"
-               required>
+               >
       </mat-form-field>
       <div *ngIf="measurementForm.submitted && hotWater.invalid" class="invalid-feedback">
         <div *ngIf="hotWater.errors.required">Wymagane pole</div>
@@ -44,7 +44,7 @@
                [(ngModel)]="measurement.coldWater"
                name="coldWater"
                #coldWater="ngModel"
-               required>
+               >
       </mat-form-field>
       <div *ngIf="measurementForm.submitted && coldWater.invalid" class="invalid-feedback">
         <div *ngIf="coldWater.errors.required">Wymagane pole</div>
@@ -59,7 +59,7 @@
                [(ngModel)]="measurement.heating"
                name="heating"
                #heating="ngModel"
-               required>
+               >
       </mat-form-field>
       <div *ngIf="measurementForm.submitted && heating.invalid" class="invalid-feedback">
         <div *ngIf="heating.errors.required">Wymagane pole</div>
@@ -85,6 +85,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <button  mat-raised-button class="primary add-measurement-btn" type="submit">Dodaj odczyt</button>
+    <button  mat-raised-button class="primary add-measurement-btn" type="submit" *ngIf="!isEditingMeasurement">Dodaj odczyt</button>
+    <button  mat-raised-button class="primary add-measurement-btn" type="submit" *ngIf="isEditingMeasurement">Edytuj odczyt</button>
   </form>
 </div>

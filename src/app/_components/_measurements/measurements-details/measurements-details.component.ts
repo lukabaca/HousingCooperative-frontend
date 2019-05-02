@@ -56,7 +56,6 @@ export class MeasurementsDetailsComponent implements OnInit {
   }
 
   editMeasurement() {
-    console.log('router ', this.measurementId);
     this.router.navigate(['addMeasurement', this.measurementId]);
   }
 }

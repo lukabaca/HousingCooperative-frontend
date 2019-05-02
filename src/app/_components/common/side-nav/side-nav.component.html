@@ -12,8 +12,14 @@
         <span class="nav-text">{{ 'side-nav-building' | translate}}</span>
       </div>
     </li>
-    <li>
+    <li *ngIf="authGuard.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER'])">
       <div class="side-nav-element" routerLink="/bills">
+        <span><i class="material-icons nav-icon">monetization_on</i></span>
+        <span class="nav-text">{{ 'side-nav-bills' | translate}}</span>
+      </div>
+    </li>
+    <li *ngIf="authGuard.hasRole(['ROLE_USER'])">
+      <div class="side-nav-element" routerLink="/userBills">
         <span><i class="material-icons nav-icon">monetization_on</i></span>
         <span class="nav-text">{{ 'side-nav-bills' | translate}}</span>
       </div>

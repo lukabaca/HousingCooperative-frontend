@@ -6,8 +6,8 @@ export class Bill {
   hotWaterCost: number;
   coldWaterCost: number;
   heatingCost: number;
-  isPaid: boolean;
-  isChecked: boolean;
-  isAccepted: boolean;
+  paid: boolean;
+  checked: boolean;
+  accepted: boolean;
   measurement: Measurement;
 }

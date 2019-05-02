@@ -7,11 +7,11 @@ import {Router} from '@angular/router';
 import {Bill} from '../../../_models/bill';
 
 @Component({
-  selector: 'app-bills',
-  templateUrl: './bills.component.html',
-  styleUrls: ['./bills.component.scss']
+  selector: 'app-user-bills',
+  templateUrl: './user-bills.component.html',
+  styleUrls: ['./user-bills.component.scss']
 })
-export class BillsComponent extends DataTableConfigurator implements OnInit {
+export class UserBillsComponent extends DataTableConfigurator implements OnInit {
   bills: Bill[];
   columnKeys: string[] = ['id', 'measurement.month', 'measurement.year', 'measurement.premise.number', 'accepted', 'checked', 'paid'];
   isLoading: boolean;
@@ -26,7 +26,7 @@ export class BillsComponent extends DataTableConfigurator implements OnInit {
   }
 
   getBills() {
-    this.billService.getBills().subscribe((bills: Bill[]) => {
+    this.billService.getUserBills().subscribe((bills: Bill[]) => {
       this.bills = bills;
       this.dataSource = new MatTableDataSource<Bill>(this.bills);
       this.dataSource.paginator = this.paginator;

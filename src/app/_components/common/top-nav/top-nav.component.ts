@@ -3,6 +3,7 @@ import {AuthenticationService} from '../../../_services/authentication.service';
 import {User} from '../../../_models/user';
 import {Router} from '@angular/router';
 import {TranslateService} from '../../../_services/translate.service';
+import {AuthGuard} from '../../../_guards/auth.guard';
 
 @Component({
   selector: 'app-top-nav',
@@ -14,7 +15,8 @@ export class TopNavComponent implements OnInit {
   currentlyLoggedUser: User;
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
-              private translate: TranslateService
+              private translate: TranslateService,
+              private authGuard: AuthGuard
               ) { }
 
   ngOnInit() {
