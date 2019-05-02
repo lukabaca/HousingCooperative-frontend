@@ -1,6 +1,7 @@
 <header>
   <div class="header-area">
-    <h3 class="header-title">Dodaj odczyt</h3>
+    <h3 class="header-title" *ngIf="!isEditingMeasurement">Dodaj odczyt</h3>
+    <h3 class="header-title" *ngIf="isEditingMeasurement">Edytuj odczyt</h3>
   </div>
 </header>
 <div class="new-measurement-area w-33">
@@ -84,6 +85,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <button  mat-raised-button class="primary add-measurement-btn" type="submit">Dodaj odczyt</button>
+    <button  mat-raised-button class="primary add-measurement-btn" type="submit" *ngIf="!isEditingMeasurement">Dodaj odczyt</button>
+    <button  mat-raised-button class="primary add-measurement-btn" type="submit" *ngIf="isEditingMeasurement">Edytuj odczyt</button>
   </form>
 </div>
