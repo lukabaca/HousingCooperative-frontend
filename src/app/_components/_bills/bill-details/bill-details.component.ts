@@ -3,6 +3,7 @@ import {Bill} from '../../../_models/bill';
 import {BillService} from '../../../_services/bill.service';
 import {ActivatedRoute} from '@angular/router';
 import {SnackBarGenerator} from '../../../_helpers/snackBarGenerator';
+import {AuthGuard} from '../../../_guards/auth.guard';
 
 @Component({
   selector: 'app-bill-details',
@@ -15,7 +16,8 @@ export class BillDetailsComponent implements OnInit {
   bill: Bill;
   constructor(private billService: BillService,
               private route: ActivatedRoute,
-              private snackBar: SnackBarGenerator) {
+              private snackBar: SnackBarGenerator,
+              private  authGuard: AuthGuard) {
     if (this.route.snapshot.params.id) {
       this.billId = this.route.snapshot.params.id;
     }
@@ -39,6 +41,10 @@ export class BillDetailsComponent implements OnInit {
   }
 
   denyBill() {
+
+  }
+
+  payBill() {
 
   }
 }

@@ -1,0 +1,83 @@
+<div class="component-content">
+  <app-loading *ngIf="isLoading"></app-loading>
+  <div class="content-container" [hidden]="isLoading">
+    <header>
+      <div class="header-area">
+        <h3 class="header-title">Rachunki</h3>
+      </div>
+    </header>
+    <div class="list-content" [hidden]="!(bills && bills.length > 0)">
+      <table #table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>id</th>
+          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.id}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="electricityCost">
+          <th mat-header-cell *matHeaderCellDef>Prąd</th>
+          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.electricityCost}} zł</td>
+        </ng-container>
+
+        <ng-container matColumnDef="hotWaterCost">
+          <th mat-header-cell *matHeaderCellDef>Ciepła woda</th>
+          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.hotWaterCost}} zł</td>
+        </ng-container>
+
+        <ng-container matColumnDef="coldWaterCost">
+          <th mat-header-cell *matHeaderCellDef>Zimna woda</th>
+          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.coldWaterCost}} zł</td>
+        </ng-container>
+
+        <ng-container matColumnDef="heatingCost">
+          <th mat-header-cell *matHeaderCellDef>Ogrzewanie</th>
+          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)"> {{element.heatingCost}} zł</td>
+        </ng-container>
+
+        <ng-container matColumnDef="accepted">
+          <th mat-header-cell *matHeaderCellDef>Zaakceptowany</th>
+          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)">
+            <i class="material-icons measurement-not-accepted" *ngIf="!element.accepted">
+              close
+            </i>
+            <i class="material-icons measurement-accepted" *ngIf="element.accepted">
+              check
+            </i>
+        </ng-container>
+
+        <ng-container matColumnDef="checked">
+          <th mat-header-cell *matHeaderCellDef>Oczekujący na potwierdzenie</th>
+          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)">
+            <i class="material-icons measurement-waiting-for-confimartion" *ngIf="!element.checked">
+              av_timer
+            </i>
+            <i class="material-icons measurement-accepted" *ngIf="element.checked">
+              check
+            </i>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paid">
+          <th mat-header-cell *matHeaderCellDef>Zapłacony</th>
+          <td mat-cell *matCellDef="let element" (click)="billDetails(element, $event)">
+            <i class="material-icons measurement-not-accepted" *ngIf="!element.paid">
+              close
+            </i>
+            <i class="material-icons measurement-accepted" *ngIf="element.accepted">
+              check
+            </i>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnKeys"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnKeys; let i = index"></tr>
+      </table>
+
+      <mat-paginator [length]="length"
+                     [pageSize]="pageSize"
+                     [pageSizeOptions]="pageSizeOptions"
+                     (page)="pageEvent = $event">
+      </mat-paginator>
+    </div>
+    <span *ngIf="bills && bills.length <= 0">Brak odczytów</span>
+  </div>
+</div>

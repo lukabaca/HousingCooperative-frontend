@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   return: string;
   ngOnInit() {
     if (this.authenticationService.isUserLoggedIn()) {
-      this.router.navigate(['home']);
+      this.router.navigate(['']);
     }
     this.user = new User();
     this.return = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       this.wrongCredentials = "";
       this.authenticationService.login(this.user).subscribe(res => {
         setTimeout(() => {
-          this.router.navigate([('home')]);
+          this.router.navigate([('')]);
         }, 300);
       },error => {
           this.wrongCredentials = 'Błędne dane logowania';

@@ -2,9 +2,12 @@
   <header>
     <div class="header-area">
       <h3 class="header-title">Rachunek dla lokalu nr: {{bill.measurement.premise.number}}</h3>
-      <div class="buttons-area">
+      <div class="buttons-area" *ngIf="authGuard.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER'])">
         <button mat-raised-button class="primary accept-bill" (click)="acceptBill()" [disabled]="bill.isAccepted">Zatwierdź odczyt</button>
         <button mat-raised-button color="warn" (click)="denyBill()">Odrzuć odczyt</button>
+      </div>
+      <div class="pay-bill-area" *ngIf="authGuard.hasRole(['ROLE_USER'])">
+        <button mat-raised-button class="primary" (click)="payBill()">Zapłać</button>
       </div>
     </div>
     <div class="bill-state-info">

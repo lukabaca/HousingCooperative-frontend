@@ -15,6 +15,7 @@ import {BillsComponent} from './_components/_bills/bills/bills.component';
 import {BillDetailsComponent} from './_components/_bills/bill-details/bill-details.component';
 import {UserMeasurementsComponent} from './_components/_measurements/user-measurements/user-measurements.component';
 import {AddMeasurementComponent} from './_components/_measurements/add-measurement/add-measurement.component';
+import {UserBillsComponent} from './_components/_bills/user-bills/user-bills.component';
 
 const Roles = {
   ADMIN: 'ROLE_ADMIN',
@@ -25,7 +26,7 @@ const Roles = {
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'home', component: BuildingsComponent, canActivate: [AuthGuard]},
+  {path: 'home', component: BuildingsComponent, canActivate: [AuthGuard], data: {roles: [Roles.ADMIN, Roles.MANAGER]} },
   {path: 'buildings', component: BuildingsComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN] } },
   {path: 'building/:id', component: BuildingComponent, canActivate: [AuthGuard]},
   {path: 'locators', component: LocatorsComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN] }},
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path: 'measurements/:id', component: MeasurementsDetailsComponent, canActivate: [AuthGuard]},
   {path: 'bills', component: BillsComponent, canActivate: [AuthGuard]},
   {path: 'bills/:id', component: BillDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'userBills', component: UserBillsComponent, canActivate: [AuthGuard], data: { roles: [Roles.USER] }},
 ];
 
 @NgModule({
