@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Bill} from '../../../_models/bill';
 import {BillService} from '../../../_services/bill.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SnackBarGenerator} from '../../../_helpers/snackBarGenerator';
 import {AuthGuard} from '../../../_guards/auth.guard';
 import {StateAcceptedRequest} from '../../../_models/_requests/stateAcceptedRequest';
@@ -19,7 +19,8 @@ export class BillDetailsComponent implements OnInit {
   constructor(private billService: BillService,
               private route: ActivatedRoute,
               private snackBar: SnackBarGenerator,
-              private  authGuard: AuthGuard) {
+              private authGuard: AuthGuard,
+              private router: Router) {
     if (this.route.snapshot.params.id) {
       this.billId = this.route.snapshot.params.id;
     }
@@ -62,5 +63,9 @@ export class BillDetailsComponent implements OnInit {
       this.snackBar.openSnackBar('Poprawnie opłacono rachunek', true);
       this.getBill();
     });
+  }
+
+  editBill() {
+    this.router.navigate(['editBill', this.billId]);
   }
 }

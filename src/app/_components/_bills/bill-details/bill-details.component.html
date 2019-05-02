@@ -3,11 +3,12 @@
     <div class="header-area">
       <h3 class="header-title">Rachunek dla lokalu nr: {{bill.measurement.premise.number}}</h3>
       <div class="buttons-area" *ngIf="authGuard.hasRole(['ROLE_ADMIN', 'ROLE_MANAGER']) && !bill.paid">
-        <button mat-raised-button class="primary accept-bill" (click)="acceptBill()" [disabled]="bill.isAccepted">Zatwierdź odczyt</button>
-        <button mat-raised-button color="warn" (click)="denyBill()">Odrzuć odczyt</button>
+        <button mat-raised-button class="primary accept-bill" (click)="acceptBill()" [disabled]="bill.isAccepted">Zatwierdź rachunek</button>
+        <button mat-raised-button color="warn" (click)="denyBill()">Odrzuć rachunek</button>
       </div>
       <div class="pay-bill-area" *ngIf="authGuard.hasRole(['ROLE_USER']) && !bill.paid">
         <button mat-raised-button class="primary" (click)="payBill()" [disabled]="!bill.accepted">Zapłać</button>
+        <button mat-raised-button class="primary edit-bill-btn" (click)="editBill()" [disabled]="bill.accepted">Edytuj rachunek</button>
         <p class="bill-paymennt-requirements-info" *ngIf="!bill.accepted">Aby zapłacić za rachunek musi on być zaakceptowany</p>
       </div>
     </div>
@@ -33,7 +34,7 @@
     </div>
   </header>
   <div class="bill-details-area">
-    <h5>Szczegóły odczytu</h5>
+    <h5>Szczegóły rachunku</h5>
     <mat-list>
       <mat-list-item>
         <span>Koszt prądu: </span><span class="bill-element">{{bill.electricityCost}} zł</span>

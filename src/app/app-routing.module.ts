@@ -16,6 +16,7 @@ import {BillDetailsComponent} from './_components/_bills/bill-details/bill-detai
 import {UserMeasurementsComponent} from './_components/_measurements/user-measurements/user-measurements.component';
 import {AddMeasurementComponent} from './_components/_measurements/add-measurement/add-measurement.component';
 import {UserBillsComponent} from './_components/_bills/user-bills/user-bills.component';
+import {EditBillComponent} from './_components/_bills/edit-bill/edit-bill.component';
 
 const Roles = {
   ADMIN: 'ROLE_ADMIN',
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path: 'measurements/:id', component: MeasurementsDetailsComponent, canActivate: [AuthGuard]},
   {path: 'bills', component: BillsComponent, canActivate: [AuthGuard]},
   {path: 'bills/:id', component: BillDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'editBill/:id', component: EditBillComponent, canActivate: [AuthGuard]},
   {path: 'userBills', component: UserBillsComponent, canActivate: [AuthGuard], data: { roles: [Roles.USER] }},
 ];
 
