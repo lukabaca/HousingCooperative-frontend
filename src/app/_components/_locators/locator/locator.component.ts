@@ -6,6 +6,7 @@ import {UserInfo} from '../../../_models/userInfo';
 import {Role} from '../../../_models/role';
 import {SnackBarGenerator} from '../../../_helpers/snackBarGenerator';
 import {ApiResponse} from '../../../_models/apiResponse';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-locator',
@@ -17,6 +18,7 @@ export class LocatorComponent implements OnInit {
   roles: Role[];
   isEditingUser: boolean;
   captcha: string;
+  yesterday: Date;
   constructor(private route: ActivatedRoute,
               private authenticationService: AuthenticationService,
               private snackBar: SnackBarGenerator) {
@@ -27,12 +29,14 @@ export class LocatorComponent implements OnInit {
   }
 
   initForm() {
+    this.yesterday = moment().subtract(1, 'days').toDate();
     if (this.route.snapshot.params.id) {
       const userId = this.route.snapshot.params.id;
       this.authenticationService.getUser(userId).subscribe((user: User) => {
         if (user) {
           this.user = user;
           this.isEditingUser = true;
+          console.log(user);
         }
       });
     } else {

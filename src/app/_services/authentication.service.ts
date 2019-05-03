@@ -7,8 +7,8 @@ import {map} from 'rxjs/operators';
 import {Token} from '../_models/token';
 import {Role} from '../_models/role';
 import {RegistrationRequest} from '../_models/_requests/registrationRequest';
-import {ActivatedRouteSnapshot} from '@angular/router';
 import {ApiResponse} from '../_models/apiResponse';
+
 
 
 @Injectable({ providedIn: 'root' })
@@ -39,7 +39,7 @@ export class AuthenticationService {
     return this.http.get<User>(endpoint).pipe(map(user => {
       if (user) {
         user.roleId = user.role.id;
-        // user.userInfo.birthDateFormatted = user.userInfo.birthDate
+        user.userInfo.birthDate = new Date(user.userInfo.birthDate);
         return user;
       }
       return null;

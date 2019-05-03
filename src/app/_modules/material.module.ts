@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {
-  MatButtonModule, MatCardModule, MatDialogModule, MatDividerModule,
+  MatButtonModule, MatCardModule, MatDatepickerModule, MatDialogModule, MatDividerModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatPaginatorModule, MatProgressSpinnerModule,
+  MatListModule, MatNativeDateModule, MatPaginatorModule, MatProgressSpinnerModule,
   MatSelectModule,
   MatSidenavModule, MatSnackBarModule, MatTableModule,
   MatToolbarModule,
@@ -24,8 +24,10 @@ import {
     MatDialogModule,
     MatDividerModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
-],
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
   exports: [
     MatSidenavModule,
     MatToolbarModule,
@@ -40,7 +42,9 @@ import {
     MatDialogModule,
     MatDividerModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule {}

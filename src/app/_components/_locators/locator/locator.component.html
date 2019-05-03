@@ -1,7 +1,7 @@
 <header>
   <div class="header-area">
     <h3 class="header-title">{{ 'premises-details-title' | translate}}</h3>
-    <button mat-raised-button class="primary" *ngIf="!user.enabled" (click)="sendActivationToken()">Wyślij token aktywujący</button>
+    <button mat-raised-button class="primary" *ngIf="user && !user.enabled" (click)="sendActivationToken()">Wyślij token aktywujący</button>
   </div>
 </header>
 <div class="new-locator-area w-33">
@@ -72,13 +72,16 @@
       <mat-form-field class="date-form-field">
         <mat-label>Data urodzenia</mat-label>
         <input
-          type="date"
-          placeholder="Email"
+          [matDatepicker]="picker"
+          placeholder="Data urodzenia"
           matInput
           [(ngModel)]="user.userInfo.birthDate"
           name="birthDate"
           #birthDate="ngModel"
+          [max]="yesterday"
           required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <div *ngIf="locatorForm.submitted && birthDate.invalid" class="invalid-feedback">
         <div *ngIf="birthDate.errors.required">Data urodzenia jest wymagana</div>
