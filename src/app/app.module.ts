@@ -110,7 +110,6 @@ export function setupTranslateFactory(
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} },
-    { provide: LOCALE_ID, useValue: 'pl' }
   ],
   bootstrap: [AppComponent]
 })

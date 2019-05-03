@@ -19,6 +19,10 @@
           <span>Email</span><span class="profile-details-element">{{userProfile.email}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>
+        <mat-list-item>
+          <span>Data urodzenia</span><span class="profile-details-element">{{userProfile.userInfo.birthDate | date : "dd/MM/yyyy"}}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
       </mat-list>
     </div>
     <div class="premises-area w-50">
