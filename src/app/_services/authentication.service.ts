@@ -8,6 +8,7 @@ import {Token} from '../_models/token';
 import {Role} from '../_models/role';
 import {RegistrationRequest} from '../_models/_requests/registrationRequest';
 import {ActivatedRouteSnapshot} from '@angular/router';
+import {ApiResponse} from '../_models/apiResponse';
 
 
 @Injectable({ providedIn: 'root' })
@@ -38,13 +39,14 @@ export class AuthenticationService {
     return this.http.get<User>(endpoint).pipe(map(user => {
       if (user) {
         user.roleId = user.role.id;
+        // user.userInfo.birthDateFormatted = user.userInfo.birthDate
         return user;
       }
       return null;
     }));
   }
 
-  addUser(user: User): Observable<Response> {
+  addUser(user: User): Observable<ApiResponse> {
     const endpoint = this.apiUrl + 'register';
     const registrationBody = new RegistrationRequest();
     registrationBody.birthDate = user.userInfo.birthDate;
@@ -53,7 +55,7 @@ export class AuthenticationService {
     registrationBody.password = user.password;
     registrationBody.roleId = user.roleId;
     registrationBody.surname = user.userInfo.surname;
-    return this.http.post<Response>(endpoint, registrationBody);
+    return this.http.post<ApiResponse>(endpoint, registrationBody);
   }
 
   editUser(user: User): Observable<Response> {
@@ -71,6 +73,11 @@ export class AuthenticationService {
   getUserData(): Observable<User> {
     const endpoint = this.apiUrl + 'userData';
     return this.http.get<User>(endpoint);
+  }
+
+  sendActivationToken(userId) {
+    const endpoint = this.apiUrl + `sendActivationToken/${userId}`;
+    return this.http.post(endpoint, null);
   }
 
   public isUserLoggedIn(): boolean {

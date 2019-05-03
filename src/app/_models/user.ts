@@ -12,4 +12,5 @@ export class User {
   userInfo: UserInfo;
   roleId?: number;
   premises: Premise[];
+  enabled: boolean;
 }

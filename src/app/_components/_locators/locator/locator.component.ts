@@ -5,6 +5,7 @@ import {AuthenticationService} from '../../../_services/authentication.service';
 import {UserInfo} from '../../../_models/userInfo';
 import {Role} from '../../../_models/role';
 import {SnackBarGenerator} from '../../../_helpers/snackBarGenerator';
+import {ApiResponse} from '../../../_models/apiResponse';
 
 @Component({
   selector: 'app-locator',
@@ -61,10 +62,18 @@ export class LocatorComponent implements OnInit {
         this.snackBar.openSnackBar('Wystąpił błąd', false);
       });
     } else {
-      this.authenticationService.addUser(this.user).subscribe(res => {
+      this.authenticationService.addUser(this.user).subscribe((res: ApiResponse) => {
         if (res) {
+          console.log(res);
           this.snackBar.openSnackBar('Poprawnie zarejestrowano użytkownika', true);
+          this.authenticationService.getUser(res.id).subscribe((user: User) => {
+            if (user) {
+              console.log(user);
+              this.authenticationService.sendActivationToken(user.id).subscribe();
+            }
+          });
           locatorForm.resetForm();
+          this.captcha = '';
         }
       }, error => {
         this.snackBar.openSnackBar('Wystąpił błąd', false);
@@ -74,5 +83,13 @@ export class LocatorComponent implements OnInit {
 
   resolved(captchaResponse: string) {
    this.captcha = captchaResponse;
+  }
+
+  sendActivationToken() {
+    this.authenticationService.sendActivationToken(this.user.id).subscribe( res => {
+      this.snackBar.openSnackBar('Poprawnie wysłano token', true);
+    }, error => {
+      this.snackBar.openSnackBar('Błąd przy wysyłaniu tokena', false);
+    });
   }
 }
