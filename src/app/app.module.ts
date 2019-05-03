@@ -41,6 +41,7 @@ import { AddMeasurementComponent } from './_components/_measurements/add-measure
 import { UserBillsComponent } from './_components/_bills/user-bills/user-bills.component';
 import { EditBillComponent } from './_components/_bills/edit-bill/edit-bill.component';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { UserProfileComponent } from './_components/_locators/user-profile/user-profile.component';
 export function setupTranslateFactory(
   service: TranslateService) {
   return () => service.use('pl');
@@ -73,6 +74,7 @@ export function setupTranslateFactory(
     AddMeasurementComponent,
     UserBillsComponent,
     EditBillComponent,
+    UserProfileComponent,
   ],
   entryComponents: [
     AddBuildingDialogComponent,

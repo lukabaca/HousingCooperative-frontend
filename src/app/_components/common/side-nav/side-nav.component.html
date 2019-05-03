@@ -36,5 +36,11 @@
         <span class="nav-text">{{ 'side-nav-measurements' | translate}}</span>
       </div>
     </li>
+    <li *ngIf="authGuard.hasRole(['ROLE_USER'])">
+      <div class="side-nav-element" routerLink="/userProfile">
+        <span><i class="material-icons nav-icon">person</i></span>
+        <span class="nav-text">{{ 'side-nav-user-profile' | translate}}</span>
+      </div>
+    </li>
   </ul>
 </div>

@@ -97,9 +97,7 @@ export class AuthenticationService {
     const email = user.email;
     return this.http.post<any>(endpoint, { email, password })
       .pipe(map(token => {
-        // login successful if there's a jwt token in the response
         if (token && token.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('token', JSON.stringify(token));
           this.token = token;
           this.getUserData().subscribe((loggedUser: User) => {
@@ -109,20 +107,17 @@ export class AuthenticationService {
             }
             return null;
           });
-          // this.currentUserSubject.next(user);
           return null;
         }
       }));
   }
 
   logout() {
-    // remove user from local storage to log user out
     if (localStorage.getItem('token') != null) {
       localStorage.removeItem('token');
     }
     if (localStorage.getItem('currentUser') != null) {
       localStorage.removeItem('currentUser');
     }
-    // this.currentUserSubject.next(null);
   }
 }

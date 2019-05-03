@@ -29,5 +29,7 @@
   "dialog-edit-premises-title": "Edit premises",
   "dialog-add-premises-number": "Number",
   "dialog-add-premises-space": "Space",
-  "dialog-add-premises-roomCount": "Room count"
+  "dialog-add-premises-roomCount": "Room count",
+  "side-nav-user-profile": "Account",
+  "side-nav-user-profile-title": "User profile"
 }

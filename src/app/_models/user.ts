@@ -1,6 +1,7 @@
 import {Role} from './role';
 import {Token} from './token';
 import {UserInfo} from './userInfo';
+import {Premise} from './premise';
 
 export class User {
   id: number;
@@ -10,4 +11,5 @@ export class User {
   token?: Token;
   userInfo: UserInfo;
   roleId?: number;
+  premises: Premise[];
 }
