@@ -96,6 +96,12 @@
         <!--<div *ngIf="role.errors.required">Rola jest wymagana</div>-->
       <!--</div>-->
     </div>
+    <re-captcha [(ngModel)]="captcha" (resolved)="resolved($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
+    <div *ngIf="locatorForm.submitted && !captcha" class="invalid-feedback">
+      <p>
+        Udowodnij, że nie jesteś robotem
+      </p>
+    </div>
     <button  mat-raised-button class="primary register-btn" type="submit">Rejestruj</button>
   </form>
 </div>

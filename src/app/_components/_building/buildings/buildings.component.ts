@@ -5,6 +5,7 @@ import {Building} from '../../../_models/building';
 import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
 import {AddBuildingDialogComponent} from '../../_dialogs/add-building-dialog/add-building-dialog.component';
 import {DataTableConfigurator} from '../../../_helpers/dataTableConfigurator';
+import {AuthGuard} from '../../../_guards/auth.guard';
 
 @Component({
   selector: 'app-buildings',
@@ -39,7 +40,8 @@ export class BuildingsComponent extends DataTableConfigurator implements OnInit 
   ];
   constructor(private housingCooperativeService: HousingCooperativeService,
               private router: Router,
-              private dialog: MatDialog,) {
+              private dialog: MatDialog,
+              private authGuard: AuthGuard) {
     super();
     this.isLoading = true;
   }

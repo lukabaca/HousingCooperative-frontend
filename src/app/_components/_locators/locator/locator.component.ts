@@ -15,6 +15,7 @@ export class LocatorComponent implements OnInit {
   user: User;
   roles: Role[];
   isEditingUser: boolean;
+  captcha: string;
   constructor(private route: ActivatedRoute,
               private authenticationService: AuthenticationService,
               private snackBar: SnackBarGenerator) {
@@ -48,6 +49,9 @@ export class LocatorComponent implements OnInit {
   }
 
   onSubmit(locatorForm) {
+    if (!this.captcha) {
+      return;
+    }
     if (this.isEditingUser) {
       this.authenticationService.editUser(this.user).subscribe(res => {
         if (res) {
@@ -66,5 +70,9 @@ export class LocatorComponent implements OnInit {
         this.snackBar.openSnackBar('Wystąpił błąd', false);
       });
     }
+  }
+
+  resolved(captchaResponse: string) {
+   this.captcha = captchaResponse;
   }
 }

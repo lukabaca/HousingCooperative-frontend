@@ -23,8 +23,13 @@ export class AuthenticationService {
     return this.http.get<Role[]>(endpoint);
   }
 
-  getUsers(): Observable<User[]> {
-    const endpoint = this.apiUrl + 'users';
+  getUsers(roleId = null): Observable<User[]> {
+    let endpoint = this.apiUrl;
+    if (roleId != null) {
+      endpoint = endpoint + `users?roleId=${roleId}`;
+    } else {
+      endpoint = endpoint + 'users';
+    }
     return this.http.get<User[]>(endpoint);
   }
 
