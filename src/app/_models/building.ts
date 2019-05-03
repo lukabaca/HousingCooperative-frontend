@@ -1,5 +1,6 @@
 import {HousingCooperative} from './housingCooperative';
 import {Premise} from "./premise";
+import {User} from './user';
 
 export class Building {
   id: number;
@@ -8,4 +9,6 @@ export class Building {
   city: string;
   housingCooperative: HousingCooperative;
   premises: Premise[];
+  managerId?: string;
+  manager: User;
 }

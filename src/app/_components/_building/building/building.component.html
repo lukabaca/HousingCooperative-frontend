@@ -6,6 +6,7 @@
         <h3 class="header-title">{{ 'building-details-title' | translate}} #{{building.number}}</h3>
         <button mat-raised-button class="primary" (click)="addPremises()">{{ 'building-details-add-premise' | translate}}</button>
       </div>
+      <h3 *ngIf="building.manager">Zarządca budynku: {{building.manager.userInfo.name}} {{building.manager.userInfo.surname}}</h3>
     </header>
     <div class="building-details-area">
       <div class="building-info-area w-33" *ngIf="building">

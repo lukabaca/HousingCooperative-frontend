@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Building} from '../../../_models/building';
 import {HousingCooperativeService} from '../../../_services/housingCooperative.service';
 import {HousingCooperative} from '../../../_models/housingCooperative';
+import {AuthenticationService} from '../../../_services/authentication.service';
+import {User} from '../../../_models/user';
 
 @Component({
   selector: 'app-add-building-dialog',
@@ -14,9 +16,12 @@ export class AddBuildingDialogComponent implements OnInit {
 
   building: Building;
   isEditing: boolean;
+  managers: User [];
+  managerRoleId = 3;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRef: MatDialogRef<AddBuildingDialogComponent>,) {
+              public dialogRef: MatDialogRef<AddBuildingDialogComponent>,
+            private authService: AuthenticationService) {
     if (data && data.building) {
       this.building = Object.assign({}, data.building);
       this.isEditing = true;
@@ -27,10 +32,17 @@ export class AddBuildingDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getManagers();
   }
 
   canAdd() {
     return this.building.address && this.building.city && this.building.number >= 0;
   }
 
+  getManagers() {
+    this.authService.getUsers(this.managerRoleId).subscribe((managers: User[]) => {
+      console.log(managers);
+      this.managers = managers;
+    });
+  }
 }
