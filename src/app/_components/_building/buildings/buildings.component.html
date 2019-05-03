@@ -4,11 +4,12 @@
     <header>
       <div class="header-area">
         <h3 class="header-title">{{ 'buildings-title' | translate}}</h3>
-        <button mat-raised-button class="primary" (click)="addBuilding()">{{ 'buildings-add-building' | translate}}</button>
+        <button mat-raised-button class="primary" *ngIf="authGuard.hasRole('ROLE_ADMIN')"
+                (click)="addBuilding()">{{ 'buildings-add-building' | translate}}</button>
       </div>
     </header>
-    <div class="list-content">
-      <table #table mat-table [dataSource]="dataSource" *ngIf="buildings && buildings.length > 0" matSort>
+    <div class="list-content" [hidden]="!(buildings && buildings.length > 0)">
+      <table #table mat-table [dataSource]="dataSource"  matSort>
         <div *ngFor="let displayColumn of displayedColumns, let i = index">
           <ng-container matColumnDef="{{displayColumn.key}}">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{displayColumn.name}}</th>
@@ -37,5 +38,6 @@
                      (page)="pageEvent = $event">
       </mat-paginator>
     </div>
+    <span *ngIf="buildings && buildings.length <= 0">Brak budynków</span>
   </div>
 </div>

@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'home', component: BuildingsComponent, canActivate: [AuthGuard], data: {roles: [Roles.ADMIN, Roles.MANAGER]} },
-  {path: 'buildings', component: BuildingsComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN] } },
+  {path: 'buildings', component: BuildingsComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN, Roles.MANAGER] } },
   {path: 'building/:id', component: BuildingComponent, canActivate: [AuthGuard]},
   {path: 'locators', component: LocatorsComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN] }},
   {path: 'locator/:id', component: LocatorComponent, canActivate: [AuthGuard], data: { roles: [Roles.ADMIN] }},
