@@ -5,6 +5,8 @@ import {AuthenticationService} from '../../../_services/authentication.service';
 import {UserInfo} from '../../../_models/userInfo';
 import {Role} from '../../../_models/role';
 import {SnackBarGenerator} from '../../../_helpers/snackBarGenerator';
+import {ApiResponse} from '../../../_models/apiResponse';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-locator',
@@ -16,6 +18,7 @@ export class LocatorComponent implements OnInit {
   roles: Role[];
   isEditingUser: boolean;
   captcha: string;
+  yesterday: Date;
   constructor(private route: ActivatedRoute,
               private authenticationService: AuthenticationService,
               private snackBar: SnackBarGenerator) {
@@ -26,12 +29,14 @@ export class LocatorComponent implements OnInit {
   }
 
   initForm() {
+    this.yesterday = moment().subtract(1, 'days').toDate();
     if (this.route.snapshot.params.id) {
       const userId = this.route.snapshot.params.id;
       this.authenticationService.getUser(userId).subscribe((user: User) => {
         if (user) {
           this.user = user;
           this.isEditingUser = true;
+          console.log(user);
         }
       });
     } else {
@@ -61,10 +66,18 @@ export class LocatorComponent implements OnInit {
         this.snackBar.openSnackBar('Wystąpił błąd', false);
       });
     } else {
-      this.authenticationService.addUser(this.user).subscribe(res => {
+      this.authenticationService.addUser(this.user).subscribe((res: ApiResponse) => {
         if (res) {
+          console.log(res);
           this.snackBar.openSnackBar('Poprawnie zarejestrowano użytkownika', true);
+          this.authenticationService.getUser(res.id).subscribe((user: User) => {
+            if (user) {
+              console.log(user);
+              this.authenticationService.sendActivationToken(user.id).subscribe();
+            }
+          });
           locatorForm.resetForm();
+          this.captcha = '';
         }
       }, error => {
         this.snackBar.openSnackBar('Wystąpił błąd', false);
@@ -74,5 +87,13 @@ export class LocatorComponent implements OnInit {
 
   resolved(captchaResponse: string) {
    this.captcha = captchaResponse;
+  }
+
+  sendActivationToken() {
+    this.authenticationService.sendActivationToken(this.user.id).subscribe( res => {
+      this.snackBar.openSnackBar('Poprawnie wysłano token', true);
+    }, error => {
+      this.snackBar.openSnackBar('Błąd przy wysyłaniu tokena', false);
+    });
   }
 }

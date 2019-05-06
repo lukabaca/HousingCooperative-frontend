@@ -1,0 +1,41 @@
+<div class="component-content" *ngIf="userProfile">
+  <header>
+    <div class="header-area">
+      <h3 class="header-title">{{ 'side-nav-user-profile-title' | translate}}</h3>
+    </div>
+  </header>
+  <div class="user-info-area">
+    <div class="profile-details-area w-50">
+      <mat-list>
+        <mat-list-item>
+          <span>Imię</span><span class="profile-details-element">{{userProfile.userInfo.name}}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span>Nazwisko</span><span class="profile-details-element">{{userProfile.userInfo.surname}}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span>Email</span><span class="profile-details-element">{{userProfile.email}}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <span>Data urodzenia</span><span class="profile-details-element">{{userProfile.userInfo.birthDate | date : "dd/MM/yyyy"}}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+    </div>
+    <div class="premises-area w-50">
+      <h5>Twoje mieszkania</h5>
+      <mat-list>
+        <div *ngFor="let premise of userProfile.premises">
+          <mat-list-item>
+            <span>Mieszkanie nr#: </span><span>{{premise.number}}</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-list>
+      <span *ngIf="userProfile.premises.length <= 0">Obecnie brak przypisanych mieszkań</span>
+    </div>
+  </div>
+</div>

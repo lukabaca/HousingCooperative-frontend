@@ -7,7 +7,8 @@ import {map} from 'rxjs/operators';
 import {Token} from '../_models/token';
 import {Role} from '../_models/role';
 import {RegistrationRequest} from '../_models/_requests/registrationRequest';
-import {ActivatedRouteSnapshot} from '@angular/router';
+import {ApiResponse} from '../_models/apiResponse';
+
 
 
 @Injectable({ providedIn: 'root' })
@@ -38,13 +39,14 @@ export class AuthenticationService {
     return this.http.get<User>(endpoint).pipe(map(user => {
       if (user) {
         user.roleId = user.role.id;
+        user.userInfo.birthDate = new Date(user.userInfo.birthDate);
         return user;
       }
       return null;
     }));
   }
 
-  addUser(user: User): Observable<Response> {
+  addUser(user: User): Observable<ApiResponse> {
     const endpoint = this.apiUrl + 'register';
     const registrationBody = new RegistrationRequest();
     registrationBody.birthDate = user.userInfo.birthDate;
@@ -53,7 +55,7 @@ export class AuthenticationService {
     registrationBody.password = user.password;
     registrationBody.roleId = user.roleId;
     registrationBody.surname = user.userInfo.surname;
-    return this.http.post<Response>(endpoint, registrationBody);
+    return this.http.post<ApiResponse>(endpoint, registrationBody);
   }
 
   editUser(user: User): Observable<Response> {
@@ -71,6 +73,11 @@ export class AuthenticationService {
   getUserData(): Observable<User> {
     const endpoint = this.apiUrl + 'userData';
     return this.http.get<User>(endpoint);
+  }
+
+  sendActivationToken(userId) {
+    const endpoint = this.apiUrl + `sendActivationToken/${userId}`;
+    return this.http.post(endpoint, null);
   }
 
   public isUserLoggedIn(): boolean {
@@ -97,9 +104,7 @@ export class AuthenticationService {
     const email = user.email;
     return this.http.post<any>(endpoint, { email, password })
       .pipe(map(token => {
-        // login successful if there's a jwt token in the response
         if (token && token.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('token', JSON.stringify(token));
           this.token = token;
           this.getUserData().subscribe((loggedUser: User) => {
@@ -109,20 +114,17 @@ export class AuthenticationService {
             }
             return null;
           });
-          // this.currentUserSubject.next(user);
           return null;
         }
       }));
   }
 
   logout() {
-    // remove user from local storage to log user out
     if (localStorage.getItem('token') != null) {
       localStorage.removeItem('token');
     }
     if (localStorage.getItem('currentUser') != null) {
       localStorage.removeItem('currentUser');
     }
-    // this.currentUserSubject.next(null);
   }
 }

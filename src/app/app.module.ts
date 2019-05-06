@@ -16,7 +16,7 @@ import { TopNavComponent } from './_components/common/top-nav/top-nav.component'
 import { BuildingsComponent } from './_components/_building/buildings/buildings.component';
 import {HousingCooperativeService} from './_services/housingCooperative.service';
 import { AddBuildingDialogComponent } from './_components/_dialogs/add-building-dialog/add-building-dialog.component';
-import {MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogRef} from '@angular/material';
+import {MAT_DATE_LOCALE, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDatepickerModule, MatDialogRef} from '@angular/material';
 import { LocatorsComponent } from './_components/_locators/locators/locators.component';
 import { BuildingComponent } from './_components/_building/building/building.component';
 import { AddPremisesDialogComponent } from './_components/_dialogs/add-premises-dialog/add-premises-dialog.component';
@@ -41,6 +41,7 @@ import { AddMeasurementComponent } from './_components/_measurements/add-measure
 import { UserBillsComponent } from './_components/_bills/user-bills/user-bills.component';
 import { EditBillComponent } from './_components/_bills/edit-bill/edit-bill.component';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { UserProfileComponent } from './_components/_locators/user-profile/user-profile.component';
 export function setupTranslateFactory(
   service: TranslateService) {
   return () => service.use('pl');
@@ -73,6 +74,7 @@ export function setupTranslateFactory(
     AddMeasurementComponent,
     UserBillsComponent,
     EditBillComponent,
+    UserProfileComponent,
   ],
   entryComponents: [
     AddBuildingDialogComponent,
@@ -95,6 +97,7 @@ export function setupTranslateFactory(
     BillService,
     MeasurementService,
     SnackBarGenerator,
+    MatDatepickerModule,
     TranslateService, {
       provide: APP_INITIALIZER,
       useFactory: setupTranslateFactory,
@@ -104,9 +107,9 @@ export function setupTranslateFactory(
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true},
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} },
-    { provide: LOCALE_ID, useValue: 'pl' }
   ],
   bootstrap: [AppComponent]
 })

@@ -31,5 +31,7 @@
   "dialog-add-premises-space": "Powierzechnia",
   "dialog-add-premises-roomCount": "Liczba pokoi",
   "premises-details-titleHeader": "Mieszkanie",
-  "premises-details-add-person": "Dodaj lokatora"
+  "premises-details-add-person": "Dodaj lokatora",
+  "side-nav-user-profile": "Profil",
+  "side-nav-user-profile-title": "Profil użytkownika"
 }
