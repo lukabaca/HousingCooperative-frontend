@@ -33,5 +33,11 @@
   "premises-details-titleHeader": "Mieszkanie",
   "premises-details-add-person": "Dodaj lokatora",
   "side-nav-user-profile": "Profil",
-  "side-nav-user-profile-title": "Profil użytkownika"
+  "side-nav-user-profile-title": "Profil użytkownika",
+  "user-profile-name": "Imię",
+  "user-profile-surname": "Nazwisko",
+  "user-profile-email": "Email",
+  "user-profile-premises-title": "Twoje mieszkania",
+  "user-profile-premises": "Mieszkanie nr ",
+  "user-profile-noPremises": "Brak przypisanych mieszkań"
 }

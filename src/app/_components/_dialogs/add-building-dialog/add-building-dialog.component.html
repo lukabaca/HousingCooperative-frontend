@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>{{ isEditing ? ('dialog-edit-building-title' | translate) : ('dialog-add-building-title' | translate)}}</h1>
-<form #createBuildingForm="ngForm">
+<form #createBuildingForm="ngForm" *ngIf="building && managers">
   <div mat-dialog-content>
       <div class="form-group">
         <mat-form-field>
