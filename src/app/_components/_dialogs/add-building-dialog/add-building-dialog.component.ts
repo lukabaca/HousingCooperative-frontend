@@ -24,7 +24,9 @@ export class AddBuildingDialogComponent implements OnInit {
             private authService: AuthenticationService) {
     if (data && data.building) {
       this.building = Object.assign({}, data.building);
+      console.log(this.building);
       this.isEditing = true;
+      this.building.managerId = this.building.manager ? this.building.manager.id.toString() : -1;
     } else {
       this.building = new Building();
       this.isEditing = false;

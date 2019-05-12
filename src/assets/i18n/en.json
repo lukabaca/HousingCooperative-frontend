@@ -31,5 +31,12 @@
   "dialog-add-premises-space": "Space",
   "dialog-add-premises-roomCount": "Room count",
   "side-nav-user-profile": "Account",
-  "side-nav-user-profile-title": "User profile"
+  "side-nav-user-profile-title": "User profile",
+  "user-profile-name": "Name",
+  "user-profile-surname": "Surname",
+  "user-profile-email": "Email",
+  "user-profile-birthDate": "Name",
+  "user-profile-premises-title": "Your premises",
+  "user-profile-premises": "Premsies number ",
+  "user-profile-noPremises": "No premises assigned"
 }
