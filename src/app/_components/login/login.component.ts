@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.user.email && this.user.password) {
-      this.wrongCredentials = "";
+      this.wrongCredentials = '';
       this.authenticationService.login(this.user).subscribe(res => {
         setTimeout(() => {
           this.router.navigate([('')]);
