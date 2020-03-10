@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       this.wrongCredentials = '';
       this.authenticationService.login(this.user).subscribe(res => {
         setTimeout(() => {
-          this.router.navigate([('')]);
+          this.router.navigate([('/home')]);
         }, 300);
       },error => {
           this.wrongCredentials = 'Błędne dane logowania';

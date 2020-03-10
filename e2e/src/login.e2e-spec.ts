@@ -1,4 +1,4 @@
-import {LoginPage} from './app.po';
+import {LoginPage} from './pagemodel/loginPage.po';
 import {browser, by, element} from 'protractor';
 
 describe('login-component', () => {
@@ -11,7 +11,7 @@ describe('login-component', () => {
 
   it('should header contain "logowanie"', () => {
     const text = element(by.css('.title')).getText();
-    console.log(text);
+
     expect(text).toBe('Logowanie');
   });
 
@@ -46,6 +46,25 @@ describe('login-component', () => {
     browser.sleep(1000);
 
     expect(errorSpan.getText()).toBe('Błędne dane logowania');
+  });
+
+  it('should redirect to home page after successful login"', () => {
+    const loginButton = element(by.css('button'));
+    const loginInput = element(by.css('.login'));
+    const passwordInput = element(by.css('.password'));
+
+    loginInput.sendKeys('admin@onet.pl');
+    browser.sleep(1000);
+    passwordInput.sendKeys('1234');
+    browser.sleep(1000);
+
+    loginButton.click();
+
+    browser.sleep(1000);
+
+    expect(browser.getCurrentUrl()).toBe(browser.baseUrl + 'home');
+
+    browser.sleep(1000);
   });
 
 });

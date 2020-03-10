@@ -101,11 +101,11 @@
       <!--</div>-->
     </div>
     <re-captcha [(ngModel)]="captcha" (resolved)="resolved($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
-    <div *ngIf="locatorForm.submitted && !captcha" class="invalid-feedback">
+    <div *ngIf="locatorForm.submitted && !captcha" class="invalid-feedback-captcha">
       <p>
         Udowodnij, że nie jesteś robotem
       </p>
     </div>
-    <button  mat-raised-button class="primary register-btn" type="submit">Rejestruj</button>
+    <button mat-raised-button class="primary register-btn" type="submit">Rejestruj</button>
   </form>
 </div>
