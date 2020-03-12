@@ -3,8 +3,8 @@
   <span class="logo" routerLink="/userMeasurements" *ngIf="authGuard.hasRole(['ROLE_USER'])">{{ 'top-nav-logo' | translate}}</span>
   <div class="user-area">
     <div class="translation-area">
-      <button mat-flat-button class="md-primary" (click)="setLang('en')">EN</button>
-      <button mat-flat-button class="md-primary" (click)="setLang('pl')">PL</button>
+      <button mat-flat-button class="md-primary translate-en-btn" (click)="setLang('en')">EN</button>
+      <button mat-flat-button class="md-primary translate-pl-btn" (click)="setLang('pl')">PL</button>
     </div>
     <span class="logged-user-info">{{ currentlyLoggedUser.email }}</span>
     <span class="logout" (click)="logout()">{{'sign-out-title' | translate}}</span>

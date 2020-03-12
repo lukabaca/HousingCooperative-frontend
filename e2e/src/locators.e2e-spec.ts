@@ -2,11 +2,11 @@ import {browser, by, element} from 'protractor';
 import {LocatorPage} from './pagemodel/locatorPage.po';
 import {LoginHelper} from './helper/loginHelper';
 
-describe('locator-component', () => {
+describe('locator-component tests', () => {
   let page: LocatorPage;
 
   beforeAll(() => {
-    LoginHelper.loginToApp();
+    LoginHelper.loginToAppAsAdmin();
     browser.sleep(3000);
   });
 
@@ -47,14 +47,37 @@ describe('locator-component', () => {
 
   it('should validate empty fields on user registration', () => {
     page.navigateToLocator();
-    browser.sleep(3000);
+    browser.sleep(2000);
 
     const registerButton = element(by.css('.register-btn'));
     registerButton.click();
 
-    browser.sleep(3000);
+    browser.sleep(2000);
 
     expect(element(by.css('.invalid-feedback-captcha')).getText()).toBe('Udowodnij, że nie jesteś robotem');
+    expect(element(by.css('.invalid-feedback-email')).getText()).toBe('Adres email jest wymagany');
+    expect(element(by.css('.invalid-feedback-password')).getText()).toBe('Hasło jest wymagane');
+    expect(element(by.css('.invalid-feedback-name')).getText()).toBe('Imię jest wymagane');
+    expect(element(by.css('.invalid-feedback-surname')).getText()).toBe('Nazwisko jest wymagane');
+    expect(element(by.css('.invalid-feedback-birthdate')).getText()).toBe('Data urodzenia jest wymagana');
+
+    browser.sleep(2000);
+  });
+
+
+  it('should validate incorrect email address', () => {
+    page.navigateToLocator();
+    browser.sleep(2000);
+
+    const registerButton = element(by.css('.register-btn'));
+    const emailInput = element(by.css('[name="email"]'));
+
+    emailInput.sendKeys('as#2134%');
+    browser.sleep(2000);
+    registerButton.click();
+    browser.sleep(3000);
+
+    expect(element(by.css('.invalid-feedback-email'))).toBe('Błędny adres email');
 
     browser.sleep(2000);
   });

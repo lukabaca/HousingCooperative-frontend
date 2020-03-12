@@ -1,7 +1,7 @@
 import {LoginPage} from './pagemodel/loginPage.po';
 import {browser, by, element} from 'protractor';
 
-describe('login-component', () => {
+describe('login-component tests', () => {
   let page: LoginPage;
 
   beforeEach(() => {
@@ -60,7 +60,7 @@ describe('login-component', () => {
 
     loginButton.click();
 
-    browser.sleep(1000);
+    browser.sleep(2000);
 
     expect(browser.getCurrentUrl()).toBe(browser.baseUrl + 'home');
 

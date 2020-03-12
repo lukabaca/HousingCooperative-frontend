@@ -1,20 +1,32 @@
 import {browser, by, element} from 'protractor';
 
 export class LoginHelper {
-  private static login = 'admin@onet.pl';
-  private static password = '1234';
+  private static loginAdmin = 'admin@onet.pl';
+  private static passwordAdmin = '1234';
 
-  static loginToApp() {
+  private static loginLocator = 'user@user.pl';
+  private static passwordLocator = '1234';
+
+  private static loginButton = element(by.css('button'));
+  private static loginInput = element(by.css('.login'));
+  private static passwordInput = element(by.css('.password'));
+
+  static loginToAppAsAdmin() {
     LoginHelper.baseNavigate();
 
-    const loginButton = element(by.css('button'));
-    const loginInput = element(by.css('.login'));
-    const passwordInput = element(by.css('.password'));
+    this.loginInput.sendKeys(this.loginAdmin);
+    this.passwordInput.sendKeys(this.passwordAdmin);
 
-    loginInput.sendKeys(this.login);
-    passwordInput.sendKeys(this.password);
+    this.loginButton.click();
+  }
 
-    loginButton.click();
+  static loginToAppAsUser() {
+    LoginHelper.baseNavigate();
+
+    this.loginInput.sendKeys(this.loginLocator);
+    this.passwordInput.sendKeys(this.passwordLocator);
+
+    this.loginButton.click();
   }
 
   private static baseNavigate() {
