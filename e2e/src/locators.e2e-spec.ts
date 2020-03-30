@@ -77,7 +77,7 @@ describe('locator-component tests', () => {
     registerButton.click();
     browser.sleep(3000);
 
-    expect(element(by.css('.invalid-feedback-email'))).toBe('Błędny adres email');
+    expect(element(by.css('.invalid-feedback-email')).getText()).toBe('Błędny adres email');
 
     browser.sleep(2000);
   });

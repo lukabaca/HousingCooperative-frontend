@@ -4,7 +4,7 @@
     <header>
       <div class="header-area">
         <h3 class="header-title">{{ 'buildings-title' | translate}}</h3>
-        <button mat-raised-button class="primary" *ngIf="authGuard.hasRole('ROLE_ADMIN')"
+        <button mat-raised-button class="primary add-building-btn" *ngIf="authGuard.hasRole('ROLE_ADMIN')"
                 (click)="addBuilding()">{{ 'buildings-add-building' | translate}}</button>
       </div>
     </header>
